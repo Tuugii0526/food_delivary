@@ -1,6 +1,6 @@
 import express from 'express'
 const app=express()
- 
+const PORT=1234
  app.get('/',(req,res)=>{
 res.json(
     {
@@ -13,6 +13,6 @@ res.json(
     success:'Yes iam working'
    })
  })
- app.listen(_,()=>{
+ app.listen(PORT,()=>{
   console.log('Service started working')
 })
