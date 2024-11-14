@@ -70,3 +70,8 @@ body {
     @apply bg-background text-foreground;
   }
 }
+.container {
+  min-width:240px ;
+  max-width: 1258px;
+  margin: 0 auto;
+}
