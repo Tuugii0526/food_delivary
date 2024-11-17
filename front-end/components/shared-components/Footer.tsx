@@ -2,7 +2,7 @@ import { poppins } from "@/app/fonts/fonts";
 import PineconeIcon from "../icons/PineconeIcon";
 import { FacebookIcon } from "../icons/FacebookIcon";
 import { InstagramIcon } from "../icons/InstagramIcon";
-import { Copyright, XCircle, XIcon } from "lucide-react";
+import { Copyright } from "lucide-react";
 import { XIconNotLucide } from "../icons/TwitterIcon";
 const contracts = [
   {
