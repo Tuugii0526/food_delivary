@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <div className="container  flex items-center justify-between px-6 py-2">
       <div className="flex gap-6 items-center">
-        <PineconeIcon />
+        <PineconeIcon fill="white"/>
         <div className="flex gap-2">
           {navs.map((nav) => (
             <div
