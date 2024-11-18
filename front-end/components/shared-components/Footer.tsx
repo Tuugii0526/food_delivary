@@ -4,35 +4,17 @@ import { FacebookIcon } from "../icons/FacebookIcon";
 import { InstagramIcon } from "../icons/InstagramIcon";
 import { Copyright } from "lucide-react";
 import { XIconNotLucide } from "../icons/TwitterIcon";
-const contracts = [
-  {
-    id: 1,
-    title: "Нүүр",
-  },
-  {
-    id: 2,
-    title: "Холбоо барих",
-  },
-  {
-    id: 3,
-    title: "Хоолны цэс",
-  },
-  {
-    id: 4,
-    title: "Үйлчилгээний нөхцөл",
-  },
-  {
-    id: 5,
-    title: "Хүргэлтийн бүс",
-  },
-  {
-    id: 6,
-    title: "Нууцлалын бодлого",
-  },
-];
+import { contracts } from "@/lib/data-all/data";
 export default function Footer() {
   return (
-    <div className="w-full h-fit py-32 bg-[#18BA51] ">
+    <div
+      className="w-full h-fit py-32 bg-[#18BA51] "
+      style={{
+        backgroundImage: "url(/vegetables.png)",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       <div className="container *:text-white flex flex-col   gap-10 *:w-full">
         <div className="flex gap-2 justify-center">
           <PineconeIcon fill="white" />

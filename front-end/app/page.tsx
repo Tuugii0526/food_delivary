@@ -1,4 +1,7 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { CheckCategories } from "@/components/home/check-categories/CheckCategories";
+import { FoodsContainer } from "@/components/home/foods/FoodsContainer";
+import { Hero } from "@/components/home/hero/Hero";
+
 export default async function Home() {
   let data;
   let error;
@@ -11,14 +14,9 @@ export default async function Home() {
   }
   return (
     <>
-      
-      <Alert>
-        <AlertTitle>Heads up!</AlertTitle>
-        <AlertDescription>
-        <div>{data?.success}</div>
-        {error && <p className="text-red-600">{error}</p>}
-        </AlertDescription>
-      </Alert>
+      <Hero/>
+      <CheckCategories/>
+      <FoodsContainer/>
     </>
   );
 }
