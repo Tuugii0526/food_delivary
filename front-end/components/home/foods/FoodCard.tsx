@@ -5,7 +5,7 @@ export const FoodCard=({food}:{food:Food})=>{
     const prices:JSX.Element[]=[]
     if(food.discountPercent)
     { 
-        let discountPrice=Math.floor(((100-food.discountPercent)/100)*food.initialPrice)
+        const discountPrice=Math.floor(((100-food.discountPercent)/100)*food.initialPrice)
         prices.push(<p key={1} className={`${poppins.className} text-[#18BA51]`}>
          {discountPrice}₮
         </p>
