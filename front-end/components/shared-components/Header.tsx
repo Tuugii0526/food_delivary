@@ -1,25 +1,12 @@
 import { Search, ShoppingBag, UserIcon } from "lucide-react";
+import { navs } from "@/lib/data-all/data";
 import PineconeIcon from "../icons/PineconeIcon";
-const navs = [
-  {
-    id: 1,
-    title: "нүүр",
-  },
-  {
-    id: 2,
-    title: "хоолны цэс",
-  },
-  {
-    id: 3,
-    title: "хүргэлтийн бүс",
-  },
-];
 export default function Header() {
   return (
-    <div className="container  flex items-center justify-between px-6 py-2">
+    <div className="container flex items-center justify-between px-6 py-2">
       <div className="flex gap-6 items-center">
-        <PineconeIcon fill="white"/>
-        <div className="flex gap-2">
+        <PineconeIcon fill="black" />
+        <div className="flex justify-around">
           {navs.map((nav) => (
             <div
               key={nav.id}
@@ -31,7 +18,10 @@ export default function Header() {
         </div>
       </div>
       <div className="flex gap-2 *:px-2 *:py-1 *:flex *:gap-2">
-        <label htmlFor="search" className="w-[260px] border-2 border-white rounded-[8px] has-[:focus]:border-gray-300">
+        <label
+          htmlFor="search"
+          className="w-[260px] border-2 border-white rounded-[8px] has-[:focus]:border-gray-300"
+        >
           <Search />
           <input
             id="search"
