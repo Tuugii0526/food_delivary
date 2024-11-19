@@ -1,18 +1,58 @@
-import express from 'express'
-const app=express()
-const PORT=1234
- app.get('/',(req,res)=>{
-res.json(
-    {
-        success:'Yes you have successfully gotten a response from the server'
-    }
-)
- })
- app.get('/exp',(req,res)=>{
-   res.json({
-    success:'Yes iam working'
-   })
- })
- app.listen(PORT,()=>{
-  console.log('Service started working')
-})
+import express, { response } from "express";
+import cors from "cors";
+import { v2 as cloudinary } from "cloudinary";
+import "dotenv/config";
+const app = express();
+app.use(express.json());
+app.use(cors());
+const PORT = 1234;
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUDNAME,
+  api_key: process.env.CLOUDINARY_APIKEY,
+  api_secret: process.env.CLOUDINARY_APISECRET,
+  secure: true,
+});
+app.get("/", (req, res) => {
+  res.json({
+    success: "Yes you have successfully gotten a response from the server",
+  });
+});
+app.get("/exp", (req, res) => {
+  res.json({
+    success: "Yes iam working",
+  });
+});
+app.get("/cloudinary", async (req, res) => {
+  const query = req.query;
+  if (query.id) {
+    const optimizedUrl = cloudinary.url(query.id, {
+      fetch_format: "auto",
+      quality: "auto",
+    });
+    res.status(200).json({
+      response: optimizedUrl,
+    });
+  }
+  res.status(404).json({
+    response: "Image not found",
+  });
+});
+
+app.post("/cloudinary", async (req, res) => {
+  try {
+    const result = await cloudinary.uploader.upload("./assets/oreoShake.png", {
+      public_id: "1",
+    });
+    res.status(201).json({
+      response: result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      response: `${error}`,
+    });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log("Service started working");
+});
