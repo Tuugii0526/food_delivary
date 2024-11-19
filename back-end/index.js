@@ -43,11 +43,11 @@ app.post("/cloudinary", async (req, res) => {
     const result = await cloudinary.uploader.upload("./assets/oreoShake.png", {
       public_id: "1",
     });
-    res.status(201).json({
+    return res.status(201).json({
       response: result,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       response: `${error}`,
     });
   }
