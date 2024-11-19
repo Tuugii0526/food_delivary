@@ -3,9 +3,9 @@ import { ChevronRight, StarsIcon } from "lucide-react";
 
 export const Top = ({ categoryName }: { categoryName: string }) => {
   return (
-    <div className="w-full py-4 px-1 flex justify-between">
-      <div className="flex gap-2">
-        <StarsIcon className="bg-[#18BA51]" />
+    <div className="w-full py-4 px-1 flex justify-between items-center">
+      <div className="flex gap-2 items-center">
+        <StarsIcon className="text-[#18BA51]" />
         <p
           className={`${poppins.className} text-[22px] leading-[33px] text-[#272727]`}
         >

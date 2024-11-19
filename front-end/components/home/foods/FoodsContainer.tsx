@@ -23,5 +23,5 @@ export const FoodsContainer = () => {
     lastCategoryId = foods[i]?.categoryId;
   }
   
-  return <div className="container flex flex-col gap-20">{result}</div>;
+  return <div className="container flex flex-col gap-20 mb-20">{result}</div>;
 };
