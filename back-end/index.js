@@ -22,18 +22,18 @@ app.get("/exp", (req, res) => {
     success: "Yes iam working",
   });
 });
-app.get("/cloudinary", async (req, res) => {
+app.get("/cloudinary", (req, res) => {
   const query = req.query;
   if (query.id) {
     const optimizedUrl = cloudinary.url(query.id, {
       fetch_format: "auto",
       quality: "auto",
     });
-    res.status(200).json({
+    return res.status(200).json({
       response: optimizedUrl,
     });
   }
-  res.status(404).json({
+  return res.status(404).json({
     response: "Image not found",
   });
 });
