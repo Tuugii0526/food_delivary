@@ -26,6 +26,7 @@ export default function Header() {
           <ShoppingBag />
           <p className="font-bold text-sm leading-5">Сагс</p>
         </div>
+
         <UserNav />
       </div>
     </div>
