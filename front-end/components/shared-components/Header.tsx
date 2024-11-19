@@ -1,21 +1,12 @@
 import { Search, ShoppingBag, UserIcon } from "lucide-react";
-import { navs } from "@/lib/data-all/data";
 import PineconeIcon from "../icons/PineconeIcon";
+import { NavigationLinks } from "./header/NavigationLinks";
 export default function Header() {
   return (
     <div className="container flex items-center justify-between px-6 py-2">
       <div className="flex gap-6 items-center">
         <PineconeIcon fill="black" />
-        <div className="flex justify-around">
-          {navs.map((nav) => (
-            <div
-              key={nav.id}
-              className="py-2 px-4 font-bold text-sm leading-4 text-black uppercase"
-            >
-              {nav.title}
-            </div>
-          ))}
-        </div>
+        <NavigationLinks/>
       </div>
       <div className="flex gap-2 *:px-2 *:py-1 *:flex *:gap-2">
         <label

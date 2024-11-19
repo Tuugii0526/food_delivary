@@ -1,5 +1,7 @@
 import { poppins } from "@/app/fonts/fonts"
 import { Food } from "@/lib/types"
+import Image from "next/image"
+import { DiscountPercent } from "./one-type-foods/DiscountPercent"
 
 export const FoodCard=({food}:{food:Food})=>{
     const prices:JSX.Element[]=[]
@@ -23,7 +25,9 @@ export const FoodCard=({food}:{food:Food})=>{
     }
     return (
         <div className="h-[256px] flex flex-col w-[24%] flex-shrink-0 relative justify-between">
-          <div className="w-full rounded-sm h-[70%] bg-slate-300">
+          <div className="w-[90%] relative rounded-sm h-[70%]">
+            {food.discountPercent>0 && <DiscountPercent discountPercent={food.discountPercent}/>}
+          <Image src={'/heroFood.png'} alt="hero food" fill/>
           </div>
           <div className="h-fit w-full flex flex-col gap-0.5">
           <p className={`${poppins.className} `}>{food.foodName}</p>
