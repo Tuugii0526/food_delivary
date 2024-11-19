@@ -54,5 +54,7 @@ app.post("/cloudinary", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("Service started working");
+  console.log(
+    "Service started working. Here I have a question if it is automatically deployed"
+  );
 });
