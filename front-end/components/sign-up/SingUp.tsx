@@ -9,11 +9,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-export function Login({
+export const SignUp = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -21,10 +21,19 @@ export function Login({
         <form className="flex flex-col p-8 gap-12 rounded-2xl w-[448px] ">
           <DialogHeader>
             <DialogTitle className="font-bold text-3xl text-center">
-              Нэвтрэх
+              Бүртгүүлэх
             </DialogTitle>
           </DialogHeader>
           <fieldset className="relative flex flex-col gap-2 pb-2 w-full">
+            <label htmlFor="name" className="flex flex-col gap-1">
+              Нэр
+              <input
+                type="text"
+                id="name"
+                placeholder="Нэрээ оруулна уу"
+                className="login-input"
+              />
+            </label>
             <label htmlFor="email" className="flex flex-col gap-1">
               Имэйл
               <input
@@ -34,25 +43,41 @@ export function Login({
                 className="login-input"
               />
             </label>
-            <label htmlFor="password" className="flex flex-col gap-1 relative">
+            <label htmlFor="address" className="flex flex-col gap-1">
+              Хаяг
+              <input
+                type="text"
+                id="address"
+                placeholder="Та хаягаа оруулна уу"
+                className="login-input"
+              />
+            </label>
+            <label htmlFor="password" className="flex flex-col gap-1 ">
               <p>Нууц үг</p>
               <input
                 type="password"
                 id="password"
-                placeholder="Нууц үг"
+                placeholder="Нууц үг оруулна уу"
                 className="login-input"
               />
               <EyeOff className="absolute top-[50%] right-4" />
             </label>
-            <p className="absolute  right-0 -bottom-5 text-[#3F4145]">
-              Нууц үг сэргээх
-            </p>
+            <label htmlFor="rePassword" className="flex flex-col gap-1 ">
+              <p>Нууц үг давтах</p>
+              <input
+                type="password"
+                id="rePassword"
+                placeholder="Нууц үг оруулна уу"
+                className="login-input"
+              />
+              <EyeOff className="absolute top-[50%] right-4" />
+            </label>
           </fieldset>
           <fieldset className="flex flex-col gap-8 ">
-            <button className="login-button  bg-[#f7f7f8] text-[#1C20243D]">
-              Нэвтрэх
-            </button>
-            <p className="text-center">Эсвэл</p>
+            <label htmlFor="serviceContract" className=" flex gap-2">
+              <input type="checkbox" />
+              <p>Үйлчилгээний нөхцөл зөвшөөрөх</p>
+            </label>
             <button className="login-button border border-[#18BA51]">
               Бүртгүүлэх
             </button>
@@ -61,4 +86,4 @@ export function Login({
       </DialogContent>
     </Dialog>
   );
-}
+};
