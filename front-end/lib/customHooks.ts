@@ -14,7 +14,6 @@ export const useCount = () => {
       }
     });
   }
-  let returnValue: CountPropsFunctionsType;
-  returnValue = [count, addCount, minusCount];
+  const returnValue: CountPropsFunctionsType = [count, addCount, minusCount];
   return returnValue;
 };

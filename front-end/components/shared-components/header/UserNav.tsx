@@ -2,7 +2,7 @@ import { Login } from "@/components/login/Login";
 import { UserProfile } from "@/components/user/UserProfile";
 import { UserIcon } from "lucide-react";
 export const UserNav = () => {
-  let signedIn = false;
+  const signedIn = false;
   return (
     <>
       {signedIn ? (

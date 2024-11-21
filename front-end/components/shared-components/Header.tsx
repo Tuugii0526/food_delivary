@@ -1,4 +1,4 @@
-import { Search, ShoppingBag } from "lucide-react";
+import { Search } from "lucide-react";
 import PineconeIcon from "../icons/PineconeIcon";
 import { NavigationLinks } from "./header/NavigationLinks";
 import { UserNav } from "./header/UserNav";
