@@ -1,7 +1,9 @@
+"use client";
+
 import { EyeOff } from "lucide-react";
 import {
   Dialog,
-  // DialogClose,
+  DialogClose,
   DialogContent,
   // DialogDescription,
   // DialogFooter,
@@ -9,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import Link from "next/link";
 export function Login({
   children,
 }: Readonly<{
@@ -16,7 +19,9 @@ export function Login({
 }>) {
   return (
     <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogTrigger className="user-nav" asChild>
+        {children}
+      </DialogTrigger>
       <DialogContent className="sm:max-w-md flex justify-center">
         <form className="flex flex-col p-8 gap-12 rounded-2xl w-[448px] ">
           <DialogHeader>
@@ -29,6 +34,7 @@ export function Login({
               Имэйл
               <input
                 type="email"
+                id="email"
                 placeholder="Имэйл хаягаа оруулна уу"
                 className="login-input"
               />
@@ -37,23 +43,35 @@ export function Login({
               <p>Нууц үг</p>
               <input
                 type="password"
+                id="password"
                 placeholder="Нууц үг"
                 className="login-input"
               />
               <EyeOff className="absolute top-[50%] right-4" />
             </label>
-            <p className="absolute  right-0 -bottom-5 text-[#3F4145]">
-              Нууц үг сэргээх
-            </p>
+
+            <DialogClose asChild>
+              <Link
+                href={"/renew-pass"}
+                className="absolute  right-0 -bottom-5 text-[#3F4145]"
+              >
+                Нууц үг сэргээх
+              </Link>
+            </DialogClose>
           </fieldset>
           <fieldset className="flex flex-col gap-8 ">
             <button className="login-button  bg-[#f7f7f8] text-[#1C20243D]">
               Нэвтрэх
             </button>
             <p className="text-center">Эсвэл</p>
-            <button className="login-button border border-[#18BA51]">
-              Бүртгүүлэх
-            </button>
+            <DialogClose asChild>
+              <Link
+                href={"/sign-up"}
+                className="login-button border border-[#18BA51]"
+              >
+                Бүртгүүлэх
+              </Link>
+            </DialogClose>
           </fieldset>
         </form>
       </DialogContent>

@@ -1,12 +1,25 @@
 import { Login } from "@/components/login/Login";
+import { UserProfile } from "@/components/user/UserProfile";
 import { UserIcon } from "lucide-react";
 export const UserNav = () => {
+  const signedIn = false;
   return (
-    <Login>
-      <div>
-        <UserIcon />
-        <p className="font-bold text-sm leading-5">Нэвтрэх</p>
-      </div>
-    </Login>
+    <>
+      {signedIn ? (
+        <UserProfile>
+          <div>
+            <UserIcon />
+            <p className="font-bold text-sm leading-5">Хэрэглэгч</p>
+          </div>
+        </UserProfile>
+      ) : (
+        <Login>
+          <div>
+            <UserIcon />
+            <p className="font-bold text-sm leading-5">Нэвтрэх</p>
+          </div>
+        </Login>
+      )}
+    </>
   );
 };
