@@ -52,7 +52,7 @@ app.post("/cloudinary", async (req, res) => {
     });
   }
 });
-
+app.get("/weather", async (req, res) => {});
 app.listen(PORT, () => {
   console.log(
     `##1  Service started working. From this branch nothing is merged into check.
