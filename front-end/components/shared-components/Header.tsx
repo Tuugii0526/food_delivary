@@ -2,6 +2,7 @@ import { Search, ShoppingBag } from "lucide-react";
 import PineconeIcon from "../icons/PineconeIcon";
 import { NavigationLinks } from "./header/NavigationLinks";
 import { UserNav } from "./header/UserNav";
+import { ShoppingBagDialog } from "./header/ShoppingBagDialog";
 export default function Header() {
   return (
     <div className="container flex items-center justify-between px-6 py-2">
@@ -22,11 +23,7 @@ export default function Header() {
             className="outline-none"
           />
         </label>
-        <div>
-          <ShoppingBag />
-          <p className="font-bold text-sm leading-5">Сагс</p>
-        </div>
-
+        <ShoppingBagDialog />
         <UserNav />
       </div>
     </div>

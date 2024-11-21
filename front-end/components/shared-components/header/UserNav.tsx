@@ -1,17 +1,17 @@
 import { Login } from "@/components/login/Login";
-import { SignUp } from "@/components/sign-up/SingUp";
+import { UserProfile } from "@/components/user/UserProfile";
 import { UserIcon } from "lucide-react";
 export const UserNav = () => {
-  let signedIn=true
+  let signedIn = false;
   return (
     <>
       {signedIn ? (
-        <SignUp>
+        <UserProfile>
           <div>
             <UserIcon />
             <p className="font-bold text-sm leading-5">Хэрэглэгч</p>
           </div>
-        </SignUp>
+        </UserProfile>
       ) : (
         <Login>
           <div>

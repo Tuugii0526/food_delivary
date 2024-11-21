@@ -29,6 +29,42 @@ body {
   text-align: center;
   width: 100%;
 }
+.user-nav {
+  border: 1px solid white;
+  border-radius: 8px;
+}
+.user-nav:hover {
+  border-color: #e5e7eb;
+  cursor: pointer;
+}
+.minus-plus {
+  width: 45px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #18ba51;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.food-dialog-button {
+  width: 100%;
+  height: fit-content;
+  border-radius: 10px;
+  background-color: #18ba51;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 8px 16px;
+}
+.small-grey-letters {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
+  color: #8b8e95;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

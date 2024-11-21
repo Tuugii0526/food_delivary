@@ -81,6 +81,7 @@ export const foods = [
   {
     id: 1,
     foodName: "Өглөөний хоол",
+    ingredient: ["сүү", "овьёос"],
     categoryId: 1,
     categoryName: "Хямдралтай",
     initialPrice: 16800,
@@ -90,6 +91,7 @@ export const foods = [
   {
     id: 2,
     foodName: "Зайрмаг",
+    ingredient: ["сүү", "крийм"],
     categoryId: 1,
     categoryName: "Хямдралтай",
     initialPrice: 6800,
@@ -99,6 +101,7 @@ export const foods = [
   {
     id: 3,
     foodName: "Өглөөний хоол",
+    ingredient: ["сүү", "чавга"],
     categoryId: 1,
     categoryName: "Хямдралтай",
     initialPrice: 36800,
@@ -108,6 +111,7 @@ export const foods = [
   {
     id: 4,
     foodName: "Breakfast",
+    ingredient: ["сүү", "чавга", "алим"],
     categoryId: 1,
     categoryName: "Хямдралтай",
     initialPrice: 16800,
@@ -117,6 +121,7 @@ export const foods = [
   {
     id: 5,
     foodName: "Breakfast",
+    ingredient: ["сүү", "чавга", "алим", "банана"],
     categoryId: 1,
     categoryName: "Хямдралтай",
     initialPrice: 16800,
@@ -126,6 +131,7 @@ export const foods = [
   {
     id: 6,
     foodName: "Breakfast",
+    ingredient: ["сүү", "чавга", "алим", "банана"],
     categoryId: 1,
     categoryName: "Хямдралтай",
     initialPrice: 16800,
@@ -135,6 +141,7 @@ export const foods = [
   {
     id: 7,
     foodName: "Main pizza",
+    ingredient: ["сүү", "сонгино", "гурил", "бяслаг"],
     categoryId: 2,
     categoryName: "Үндсэн хоол",
     initialPrice: 3800,
@@ -144,6 +151,15 @@ export const foods = [
   {
     id: 8,
     foodName: "Food tart",
+    ingredient: [
+      "сүү",
+      "сонгино",
+      "гурил",
+      "бяслаг",
+      "чавга",
+      "алим",
+      "банана",
+    ],
     categoryId: 2,
     categoryName: "Үндсэн хоол",
     initialPrice: 348000,
@@ -153,6 +169,7 @@ export const foods = [
   {
     id: 9,
     foodName: "Cereal",
+    ingredient: ["овьёос"],
     categoryId: 2,
     categoryName: "Үндсэн хоол",
     initialPrice: 5334800,
