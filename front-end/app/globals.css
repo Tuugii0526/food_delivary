@@ -17,6 +17,12 @@ body {
   margin-right: auto;
   padding: 16px;
 }
+.dashboard-container {
+  min-width: 240px;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .login-input {
   padding: 8px 16px;
   border: 1px solid #ecedf0;
@@ -69,6 +75,14 @@ body {
 }
 .sale-block {
   display: block;
+}
+.dashboard-table-headers {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
+  color: #8b8e95;
+  padding: 12px 0;
+  background-color: #f7f7f8;
 }
 @layer base {
   :root {

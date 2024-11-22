@@ -8,15 +8,24 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  admin,
 }: Readonly<{
   children: React.ReactNode;
+  admin: React.ReactNode;
 }>) {
+  let isUser = false;
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
-        <Footer />
+        {isUser ? (
+          <>
+            <Header />
+            {children}
+            <Footer />
+          </>
+        ) : (
+          admin
+        )}
       </body>
     </html>
   );

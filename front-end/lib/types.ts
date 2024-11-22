@@ -22,6 +22,21 @@ export type Food = {
   discountPercent: number;
   currency: string;
 };
+export type Order = {
+  _id: number;
+  userId: number;
+  orderNumber: number;
+  foods: number[];
+  totalPrice: number;
+  process: {
+    isPaid: "PAID" | "NOT_PAID";
+    deliveryStatus: "PROGRESS" | "DELIVERED" | "WAITING" | "ACTIVE";
+  };
+  createdAt: Date;
+  distric: string;
+  khoroo: string;
+  apartment: string;
+};
 export type UserInfoType = {
   icon: JSX.Element;
   description: string;
