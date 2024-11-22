@@ -56,6 +56,7 @@ app.post("/cloudinary", async (req, res) => {
 });
 app.get("/data", async (req, res) => {
   try {
+    console.log("Iam working");
     const dataCollection = mongoDatabase.collection("food");
     const allDocuments = await dataCollection.find().limit(10).toArray();
     return res.json({
