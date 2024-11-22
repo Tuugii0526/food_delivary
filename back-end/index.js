@@ -1,8 +1,10 @@
-import express, { response } from "express";
+import express from "express";
 import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
 import "dotenv/config";
+import { connectToMongodb } from "./connectDb.js";
 const app = express();
+const mongoDatabase = await connectToMongodb();
 app.use(express.json());
 app.use(cors());
 const PORT = 1234;
@@ -13,12 +15,12 @@ cloudinary.config({
   secure: true,
 });
 app.get("/", (req, res) => {
-  res.json({
+  return res.json({
     success: "Yes you have successfully gotten a response from the server",
   });
 });
 app.get("/exp", (req, res) => {
-  res.json({
+  return res.json({
     success: "Yes iam working",
   });
 });
@@ -52,11 +54,25 @@ app.post("/cloudinary", async (req, res) => {
     });
   }
 });
-app.get("/weather", async (req, res) => {});
+app.get("/data", async (req, res) => {
+  try {
+    const dataCollection = mongoDatabase.collection("food");
+    const allDocuments = await dataCollection.find().limit(10).toArray();
+    return res.json({
+      success: true,
+      data: allDocuments,
+    });
+  } catch (error) {
+    return res.json({
+      success: false,
+      message: `${error}`,
+    });
+  }
+});
+app.post("/data", async (req, res) => {
+  try {
+  } catch (error) {}
+});
 app.listen(PORT, () => {
-  console.log(
-    `##1  Service started working. From this branch nothing is merged into check.
-     ##2  How to merge from back-end to check ? The answer is ?? git pull origin <branch_name> 
-          You can also use                                    ?? git fetch origin <branch_name>`
-  );
+  console.log(`Service started working `);
 });
