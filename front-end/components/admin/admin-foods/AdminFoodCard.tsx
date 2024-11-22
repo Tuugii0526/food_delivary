@@ -9,13 +9,11 @@ import { poppins } from "@/app/fonts/fonts";
 
 export const AdminFoodCard = ({ food }: { food: Food }) => {
   const [hover, setHover] = useState(false);
-  let finalPrice;
   const prices: JSX.Element[] = [];
   if (food.discountPercent) {
     const discountPrice = Math.floor(
       ((100 - food.discountPercent) / 100) * food.initialPrice
     );
-    finalPrice = discountPrice;
     prices.push(
       <p key={1} className={`${poppins.className} text-[#18BA51]`}>
         {discountPrice}₮
@@ -27,7 +25,6 @@ export const AdminFoodCard = ({ food }: { food: Food }) => {
       </p>
     );
   } else {
-    finalPrice = food?.initialPrice;
     prices.push(
       <p key={food.id} className={`${poppins.className} text-[#18BA51]`}>
         {food.initialPrice}₮
