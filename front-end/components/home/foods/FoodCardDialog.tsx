@@ -14,6 +14,7 @@ import {
 import { Food } from "@/lib/types";
 import { poppins } from "@/app/fonts/fonts";
 import { MinusPlus } from "./food-card-dialog/MinusPlus";
+import Image from "next/image";
 export function FoodCardDialog({
   children,
   food,
@@ -30,7 +31,9 @@ export function FoodCardDialog({
         {children}
       </DialogTrigger>
       <DialogContent className=" flex  gap-8 w-fit h-fit  p-8 ">
-        <div className="w-[200px] h-[200px] bg-pink-50"></div>
+        <div className="w-[200px] h-[200px] relative">
+          <Image src={food.image} alt={food.foodName} fill />
+        </div>
         <div className="flex flex-col min-w-[200px] gap-8 ">
           <DialogHeader className="flex flex-col gap-[2px]">
             <DialogTitle className={`${poppins.className}`}>

@@ -15,6 +15,7 @@ export type Food = {
   id: number;
   foodName: string;
   ingredient: string[];
+  image: string;
   categoryId: number;
   categoryName: string;
   initialPrice: number;
