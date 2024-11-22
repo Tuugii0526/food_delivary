@@ -15,6 +15,23 @@ export const navs = [
     link: "/location-range",
   },
 ];
+export const adminNavs = [
+  {
+    id: 1,
+    title: "menu",
+    link: "/",
+  },
+  {
+    id: 2,
+    title: "dashboard",
+    link: "/dashboard",
+  },
+  {
+    id: 3,
+    title: "finance",
+    link: "/finance",
+  },
+];
 export const contracts = [
   {
     id: 1,
@@ -184,5 +201,22 @@ export const foods = [
     initialPrice: 5334800,
     discountPercent: 10,
     currency: "MN",
+  },
+];
+export const orders = [
+  {
+    _id: 1,
+    userId: 1,
+    orderNumber: 1,
+    foods: [6, 8, 1],
+    totalPrice: 800,
+    process: {
+      isPaid: "PAID",
+      deliveryStatus: "PROGRESS",
+    },
+    createdAt: new Date(),
+    distric: "Bayngol",
+    khoroo: "5",
+    apartment: "Narnii khoroolol 19-r bair",
   },
 ];
