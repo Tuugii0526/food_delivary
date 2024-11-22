@@ -64,7 +64,12 @@ body {
   line-height: 16.71px;
   color: #8b8e95;
 }
-
+.sale-hidden {
+  display: none;
+}
+.sale-block {
+  display: block;
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -129,3 +134,38 @@ body {
     @apply bg-background text-foreground;
   }
 }
+/* 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Preview</title>
+</head>
+<body>
+
+  <h3>Select an image:</h3>
+  <input type="file" id="imageInput" accept="image/*" />
+  <br><br>
+  <img id="imagePreview" src="" alt="Image Preview" style="display: none; max-width: 300px;"/>
+
+  <script>
+    document.getElementById('imageInput').addEventListener('change', function(event) {
+      const file = event.target.files[0]; // Get the first file from the file input
+      if (file) {
+        const reader = new FileReader(); // Create a FileReader instance
+        
+        // Set up a callback to run when the file is successfully read
+        reader.onload = function(e) {
+          const img = document.getElementById('imagePreview');
+          img.src = e.target.result; // Set the src to the file's data URL
+          img.style.display = 'block'; // Display the image
+        };
+        
+        reader.readAsDataURL(file); // Read the file as a data URL (base64 encoded)
+      }
+    });
+  </script>
+
+</body>
+</html> */
