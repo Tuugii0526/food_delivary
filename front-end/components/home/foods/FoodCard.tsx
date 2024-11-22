@@ -37,7 +37,7 @@ export const FoodCard = ({ food }: { food: Food }) => {
           {food.discountPercent > 0 && (
             <DiscountPercent discountPercent={food.discountPercent} />
           )}
-          <Image src={"/heroFood.png"} alt="hero food" fill />
+          <Image src={food.image} alt="hero food" fill />
         </div>
         <div className="h-fit w-full flex flex-col gap-0.5">
           <p className={`${poppins.className} `}>{food.foodName}</p>

@@ -4,7 +4,8 @@ import { AdminCategory } from "@/components/admin/admin-categories/AdminCategory
 import { Plus } from "lucide-react";
 import { AdminAddCategory } from "@/components/admin/admin-categories/AdminAddCategory";
 import { AdminAddFood } from "@/components/admin/admin-categories/AdminAddFood";
-
+import { foods } from "@/lib/data-all/data";
+import { AdminFoodCard } from "@/components/admin/admin-foods/AdminFoodCard";
 export default function Page() {
   return (
     <div className="container flex gap-5 h-fit">
@@ -34,6 +35,11 @@ export default function Page() {
               Add new food
             </button>
           </AdminAddFood>
+        </div>
+        <div className="grid grid-cols-3 gap-x-6 gap-y-[60px] ">
+          {foods.map((food) => (
+            <AdminFoodCard key={food.id} food={food} />
+          ))}
         </div>
       </div>
     </div>
