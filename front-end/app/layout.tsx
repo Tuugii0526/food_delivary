@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
   admin: React.ReactNode;
 }>) {
-  let isUser = false;
+  const isUser = false;
   return (
     <html lang="en">
       <body>
