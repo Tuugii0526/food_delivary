@@ -33,9 +33,13 @@ export type Order = {
     deliveryStatus: "PROGRESS" | "DELIVERED" | "WAITING" | "ACTIVE";
   };
   createdAt: Date;
-  distric: string;
+  district: string;
   khoroo: string;
   apartment: string;
+};
+export type OrderProcessType = {
+  isPaid: string;
+  deliveryStatus: string;
 };
 export type UserInfoType = {
   icon: JSX.Element;
@@ -43,3 +47,11 @@ export type UserInfoType = {
   property: string;
 };
 export type CountPropsFunctionsType = [number, () => void, () => void];
+export type User = {
+  _id: number;
+  name: string;
+  email: string;
+  password: string;
+  phoneNumber: number;
+  role: "ADMIN" | "USER";
+};

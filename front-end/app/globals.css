@@ -84,6 +84,18 @@ body {
   padding: 12px 0;
   background-color: #f7f7f8;
 }
+.table-row-highlight-text {
+  font-weight: 400;
+  size: 14px;
+  line-height: 16px;
+  color: #121316;
+}
+.table-row-no-highlight-text {
+  font-weight: 400;
+  size: 14px;
+  line-height: 20px;
+  color: #3f4145;
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

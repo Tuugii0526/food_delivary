@@ -1,3 +1,11 @@
+import {
+  CheckCategoryType,
+  Food,
+  FoodCategoryType,
+  Order,
+  User,
+} from "../types";
+
 export const navs = [
   {
     id: 1,
@@ -58,7 +66,7 @@ export const contracts = [
     title: "Нууцлалын бодлого",
   },
 ];
-export const checkCategoriesData = [
+export const checkCategoriesData: CheckCategoryType[] = [
   {
     id: 1,
     title: "Хүргэлтийн төлөв хянах",
@@ -84,7 +92,7 @@ export const checkCategoriesData = [
     iconName: "MenuSquare",
   },
 ];
-export const foodCategories = [
+export const foodCategories: FoodCategoryType[] = [
   {
     categoryId: 1,
     categoryName: "Хямдралтай",
@@ -94,7 +102,7 @@ export const foodCategories = [
     categoryName: "Үндсэн хоол",
   },
 ];
-export const foods = [
+export const foods: Food[] = [
   {
     id: 1,
     foodName: "Өглөөний хоол",
@@ -203,10 +211,28 @@ export const foods = [
     currency: "MN",
   },
 ];
-export const orders = [
+export const users: User[] = [
   {
     _id: 1,
-    userId: 1,
+    name: "Tuguldur",
+    email: "namjildorjtuguldur1234@gmail.com",
+    password: "Tuugii1234",
+    phoneNumber: 90914944,
+    role: "ADMIN",
+  },
+  {
+    _id: 2,
+    name: "Tuvshingerel",
+    email: "tuvshingerel1234@gmail.com",
+    password: "Tuvshee1234",
+    phoneNumber: 95394944,
+    role: "USER",
+  },
+];
+export const orders: Order[] = [
+  {
+    _id: 1,
+    userId: 2,
     orderNumber: 1,
     foods: [6, 8, 1],
     totalPrice: 800,
@@ -215,8 +241,14 @@ export const orders = [
       deliveryStatus: "PROGRESS",
     },
     createdAt: new Date(),
-    distric: "Bayngol",
+    district: "Bayngol",
     khoroo: "5",
     apartment: "Narnii khoroolol 19-r bair",
   },
 ];
+export const deliveryStates = {
+  PROGRESS: "#FDF4B6",
+  DELIVERED: "#C1E6CF",
+  WAITING: "#ECEDF0",
+  ACTIVE: "#C1E6CF",
+};
