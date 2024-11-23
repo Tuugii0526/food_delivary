@@ -1,4 +1,23 @@
+import { orders, foods, users } from "@/lib/data-all/data";
+import { DashboardTableRow } from "./DashboardTableRow";
+
 export const DashboardTable = () => {
+  const results: JSX.Element[] = [];
+
+  orders.forEach((order) => {
+    const user = users.find((user) => user._id === order.userId);
+    order.foods.forEach((foodId) => {
+      const food = foods.find((food) => food.id === foodId);
+      results.push(
+        <DashboardTableRow
+          key={`${order._id}${user?._id}${food?.id}`}
+          order={order}
+          food={food}
+          user={user}
+        />
+      );
+    });
+  });
   return (
     <div className="w-full h-fit ">
       <table className="table-auto w-full ">
@@ -9,25 +28,10 @@ export const DashboardTable = () => {
             <th className="dashboard-table-headers">Payment</th>
             <th className="dashboard-table-headers">Address</th>
             <th className="dashboard-table-headers">Delivery state</th>
+            <th className="dashboard-table-headers"></th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-            <td>Malcolm Lockyer</td>
-            <td>1961</td>
-          </tr>
-          <tr>
-            <td>Witchy Woman</td>
-            <td>The Eagles</td>
-            <td>1972</td>
-          </tr>
-          <tr>
-            <td>Shining Star</td>
-            <td>Earth, Wind, and Fire</td>
-            <td>1975</td>
-          </tr>
-        </tbody>
+        <tbody>{results}</tbody>
       </table>
     </div>
   );
