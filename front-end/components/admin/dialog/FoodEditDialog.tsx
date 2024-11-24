@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -31,35 +31,6 @@ export function FoodEditDialog({
   const priceProps = useInput(`${food.initialPrice}`);
   const discountProps = useInput(`${food.discountPercent}`);
   const [checked, setChecked] = useState(false);
-  const imageInputRef = useRef<HTMLInputElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
-  useEffect(() => {
-    const theImageInputCurrentRef = imageInputRef;
-    function previewImage(event: Event) {
-      const targetInput = event.target as HTMLInputElement;
-      if (targetInput) {
-        if (targetInput.files) {
-          const file = targetInput.files[0];
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            if (e.target) {
-              if (imageRef.current) {
-                imageRef.current.src = e.target.result as string;
-              }
-            }
-          };
-          reader.readAsDataURL(file);
-        }
-      }
-    }
-    theImageInputCurrentRef.current?.addEventListener("change", previewImage);
-    return () => {
-      theImageInputCurrentRef.current?.removeEventListener(
-        "change",
-        previewImage
-      );
-    };
-  }, []);
   return (
     <Dialog>
       <DialogTrigger className="user-nav" asChild>
@@ -154,7 +125,6 @@ export function FoodEditDialog({
                 <div className="px-1 rounded-sm bg-[#393939] text-white relative h-fit w-fit cursor-pointer">
                   <p>Add image</p>
                   <input
-                    ref={imageInputRef}
                     type="file"
                     accept="image/*"
                     id="foodImage"
@@ -167,7 +137,6 @@ export function FoodEditDialog({
                 <img
                   src={food?.image}
                   alt="image will inserted here"
-                  ref={imageRef}
                   style={{
                     width: "100%",
                     height: "100%",
