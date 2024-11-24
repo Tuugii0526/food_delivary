@@ -17,3 +17,14 @@ export const useCount = () => {
   const returnValue: CountPropsFunctionsType = [count, addCount, minusCount];
   return returnValue;
 };
+export const useInput = (initialValue: string) => {
+  const [inputValue, setInputValue] = useState<string>(initialValue);
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputValue(e.target.value);
+  }
+  const inputProps = {
+    value: inputValue,
+    onChange: handleChange,
+  };
+  return inputProps;
+};

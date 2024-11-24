@@ -3,10 +3,13 @@ import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
 import "dotenv/config";
 import { connectToMongodb } from "./connectDb.js";
+import bodyParser from "body-parser";
+import multer from "multer";
 const app = express();
-const mongoDatabase = await connectToMongodb();
-app.use(express.json());
 app.use(cors());
+const upload = multer();
+const jsonParser = bodyParser.json();
+export const mongoDatabase = await connectToMongodb();
 const PORT = 1234;
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUDNAME,
@@ -40,20 +43,91 @@ app.get("/cloudinary", (req, res) => {
   });
 });
 
-app.post("/cloudinary", async (req, res) => {
+app.post("/food", upload.single("image"), async (req, res, next) => {
   try {
-    const result = await cloudinary.uploader.upload("./assets/oreoShake.png", {
-      public_id: "1",
+    const { foodName, foodCategory, foodIngredient, foodPrice, sale } =
+      req.body;
+    const { buffer, originalname } = req.file;
+    if (
+      !(
+        foodName &&
+        foodCategory &&
+        foodIngredient &&
+        foodPrice &&
+        sale >= 0 &&
+        buffer
+      )
+    ) {
+      return res.json({
+        success: false,
+      });
+    }
+    const public_id = originalname.match(/\w+/)[0];
+    const { url } = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          {
+            fetch_format: "auto",
+            quality: "auto",
+            public_id: `${public_id}`,
+            tags: ["test"],
+          },
+          function (error, result) {
+            if (error) {
+              reject();
+              return;
+            }
+            resolve(result);
+          }
+        )
+        .end(buffer);
     });
-    return res.status(201).json({
-      response: result,
+    const foodIngredientArray = foodIngredient.split(",");
+    const collection = mongoDatabase.collection("food");
+    await collection.insertOne({
+      foodName: foodName,
+      ingredient: foodIngredientArray,
+      image: url,
+      categoryId: foodCategory,
+      initialPrice: Number(foodPrice),
+      discountPercent: Number(sale),
+    });
+    return res.redirect(`${process.env.FRONTEND_URL}`);
+  } catch (error) {
+    console.log(`error:${error}`);
+    return res.redirect(`${process.env.FRONTEND_URL}`);
+  }
+});
+
+app.get("/category", async (req, res, next) => {
+  try {
+    const categoryCollection = mongoDatabase.collection("category");
+    const categories = await categoryCollection.find({}).toArray();
+    res.status(200).json({
+      data: categories,
     });
   } catch (error) {
-    return res.status(500).json({
-      response: `${error}`,
+    res.status(500).json({
+      message: `${error}`,
     });
   }
 });
+app.post("/category", upload.array(), async (req, res) => {
+  try {
+    const { category } = req.body;
+    const categoryCollection = mongoDatabase.collection("category");
+    await categoryCollection.insertOne({
+      categoryName: category,
+    });
+    return res.redirect(
+      `${process.env.FRONTEND_URL}?isCategoryCreated=${category}`
+    );
+  } catch (error) {
+    console.log("error:", error);
+    return res.redirect(`${process.env.FRONTEND_URL}`);
+  }
+});
+
 app.get("/data", async (req, res) => {
   try {
     const dataCollection = mongoDatabase.collection("food");

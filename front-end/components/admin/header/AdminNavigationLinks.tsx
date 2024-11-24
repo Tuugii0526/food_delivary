@@ -1,6 +1,6 @@
 "use client";
 
-import { adminNavs } from "@/lib/data-all/data";
+import { adminNavs } from "@/lib/data-all/mockData";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

@@ -25,7 +25,7 @@ export const FoodCard = ({ food }: { food: Food }) => {
   } else {
     finalPrice = food?.initialPrice;
     prices.push(
-      <p key={food.id} className={`${poppins.className} text-[#18BA51]`}>
+      <p key={food._id} className={`${poppins.className} text-[#18BA51]`}>
         {food.initialPrice}₮
       </p>
     );

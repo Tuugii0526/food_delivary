@@ -1,4 +1,4 @@
-import { foods } from "@/lib/data-all/data";
+import { foods } from "@/lib/data-all/mockData";
 import { OneTypeFoods } from "../home/foods/OneTypeFoods";
 import { Food } from "@/lib/types";
 export const FoodsMenu = () => {

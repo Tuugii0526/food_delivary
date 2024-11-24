@@ -16,7 +16,7 @@ export const OneTypeFoods = ({
       )}
       <div className="w-full h-fit flex gap-6 overflow-hidden">
         {foods.map((food) => (
-          <FoodCard key={food.id} food={food} />
+          <FoodCard key={food._id} food={food} />
         ))}
       </div>
     </div>

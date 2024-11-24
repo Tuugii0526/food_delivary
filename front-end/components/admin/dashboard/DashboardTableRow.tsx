@@ -1,7 +1,7 @@
 import { Food, Order, User } from "@/lib/types";
 import { Paid } from "../is-paid-state/Paid";
 import { NotPaid } from "../is-paid-state/NotPaid";
-import { deliveryStates } from "@/lib/data-all/data";
+import { deliveryStates } from "@/lib/data-all/mockData";
 import Image from "next/image";
 import { EllipsisVertical } from "lucide-react";
 import { AdminOrderEdit } from "./AdminOrderEdit";
