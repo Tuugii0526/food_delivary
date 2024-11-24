@@ -3,11 +3,9 @@ import { Plus } from "lucide-react";
 import { AdminAddCategory } from "@/components/admin/admin-categories/AdminAddCategory";
 import { foods } from "@/lib/data-all/mockData";
 import { AdminFoodCard } from "@/components/admin/admin-foods/AdminFoodCard";
-import { getCategories } from "@/lib/data";
 import { AdminCategories } from "@/components/admin/admin-categories/AdminCategories";
 import { FoodCreateDialog } from "@/components/admin/dialog/FoodCreateDialog";
 export default async function Page() {
-  const res = await getCategories();
   return (
     <div className="container flex gap-10 h-fit">
       <div className="flex flex-col w-[258px]">
