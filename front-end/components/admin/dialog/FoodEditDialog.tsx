@@ -20,16 +20,13 @@ export function FoodEditDialog({
   food,
 }: Readonly<{
   children: React.ReactNode;
-  food?: Food;
+  food?: Food | undefined;
 }>) {
-  if (!food) {
-    return;
-  }
-  const nameProps = useInput(food.foodName);
-  const categoryProps = useInput(food.categoryName);
-  const ingredientProps = useInput(food.ingredient.join(","));
-  const priceProps = useInput(`${food.initialPrice}`);
-  const discountProps = useInput(`${food.discountPercent}`);
+  const nameProps = useInput(food?.foodName || "");
+  const categoryProps = useInput(food?.categoryName || "");
+  const ingredientProps = useInput(food?.ingredient.join(",") || "");
+  const priceProps = useInput(`${food?.initialPrice}`);
+  const discountProps = useInput(`${food?.discountPercent}`);
   const [checked, setChecked] = useState(false);
   return (
     <Dialog>

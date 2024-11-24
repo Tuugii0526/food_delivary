@@ -2,10 +2,10 @@
 
 // import { useState } from "react";
 import { Food } from "@/lib/types";
-import { AdminAddFood } from "../admin-categories/AdminAddFood";
 import { DiscountPercent } from "@/components/home/foods/one-type-foods/DiscountPercent";
 import Image from "next/image";
 import { poppins } from "@/app/fonts/fonts";
+import { FoodEditDialog } from "../dialog/FoodEditDialog";
 
 export const AdminFoodCard = ({ food }: { food: Food }) => {
   // const [hover, setHover] = useState(false);
@@ -32,7 +32,7 @@ export const AdminFoodCard = ({ food }: { food: Food }) => {
     );
   }
   return (
-    <AdminAddFood food={food}>
+    <FoodEditDialog food={food}>
       <div className="h-[256px] w-full ">
         <div
           className="h-full  flex flex-col w-full flex-shrink-0 relative justify-between border-b border-r border-t hover:shadow-[2px_3px_2px_0_#d1d5dbd7]  border-white hover:border-[#d1d5dbd7] rounded-sm"
@@ -62,6 +62,6 @@ export const AdminFoodCard = ({ food }: { food: Food }) => {
           </div>
         </div>
       </div>
-    </AdminAddFood>
+    </FoodEditDialog>
   );
 };

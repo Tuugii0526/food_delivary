@@ -7,11 +7,11 @@ export async function getCategories() {
     const categories: FoodCategoryType[] = data.data;
     return { success: true, message: "", categories: categories };
   } else {
-    const message = data;
+    const { message } = data;
     return {
       success: false,
+      message: message as string,
       categories: [],
-      message: message,
     };
   }
 }

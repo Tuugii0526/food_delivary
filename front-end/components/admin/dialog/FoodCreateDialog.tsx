@@ -13,14 +13,13 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import clsx from "clsx";
-import { FoodCategoryType } from "@/lib/types";
+import { useBeAwareContext } from "@/components/context/ContextProvider";
 export function FoodCreateDialog({
   children,
-  categories,
 }: Readonly<{
   children: React.ReactNode;
-  categories: FoodCategoryType[];
 }>) {
+  const { categories, message } = useBeAwareContext();
   const [checked, setChecked] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>("");
   return (

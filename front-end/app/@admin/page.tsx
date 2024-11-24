@@ -1,13 +1,12 @@
 import { poppins } from "../fonts/fonts";
-import { AdminCategory } from "@/components/admin/admin-categories/AdminCategory";
 import { Plus } from "lucide-react";
 import { AdminAddCategory } from "@/components/admin/admin-categories/AdminAddCategory";
-import { AdminAddFood } from "@/components/admin/admin-categories/AdminAddFood";
 import { foods } from "@/lib/data-all/mockData";
 import { AdminFoodCard } from "@/components/admin/admin-foods/AdminFoodCard";
-import { SearchParamsType } from "@/lib/types";
 import { getCategories } from "@/lib/data";
-export default async function Page(props: { searchParams: SearchParamsType }) {
+import { AdminCategories } from "@/components/admin/admin-categories/AdminCategories";
+import { FoodCreateDialog } from "@/components/admin/dialog/FoodCreateDialog";
+export default async function Page() {
   const res = await getCategories();
   return (
     <div className="container flex gap-10 h-fit">
@@ -18,13 +17,7 @@ export default async function Page(props: { searchParams: SearchParamsType }) {
           Food Menu
         </p>
         <div className="flex flex-col max-h-[500px] overflow-y-scroll gap-[26px] pr-4 relative">
-          {res.success ? (
-            res.categories.map((category) => (
-              <AdminCategory key={category._id} category={category} />
-            ))
-          ) : (
-            <p className="text-red-600">{res.message}</p>
-          )}
+          <AdminCategories />
           <AdminAddCategory>
             <div className="w-full  py-2 px-4 rounded-lg flex gap-2 border border-[#D6D8DB] text-[#5E6166]">
               <Plus />
@@ -36,13 +29,11 @@ export default async function Page(props: { searchParams: SearchParamsType }) {
       <div className="flex  flex-col p-6 gap-8 h-[1228px] grow ">
         <div className="flex justify-between">
           <p className="font-bold text-[24px]">Breakfast</p>
-          {res.success && (
-            <AdminAddFood>
-              <button className="py-2 px-4 bg-[#18BA51] rounded-sm text-white">
-                Add new food
-              </button>
-            </AdminAddFood>
-          )}
+          <FoodCreateDialog>
+            <button className="py-2 px-4 bg-[#18BA51] rounded-sm text-white">
+              Add new food
+            </button>
+          </FoodCreateDialog>
         </div>
         <div className="grid grid-cols-3 gap-x-6 gap-y-[60px] ">
           {foods.map((food) => (
