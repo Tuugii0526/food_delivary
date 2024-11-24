@@ -21,7 +21,10 @@ export const ContextProvider = ({
 }) => {
   const [ct, setCt] = useState<FoodCategoryType[]>(categories);
   //ct is categories
-  const value = useMemo(() => ({ categories: ct, message: message }), [ct]);
+  const value = useMemo(
+    () => ({ categories: ct, message: message }),
+    [ct, setCt, message]
+  );
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 export const useBeAwareContext = () => {

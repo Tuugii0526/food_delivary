@@ -19,7 +19,7 @@ export function FoodCreateDialog({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { categories, message } = useBeAwareContext();
+  const { categories } = useBeAwareContext();
   const [checked, setChecked] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>("");
   return (
