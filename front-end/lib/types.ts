@@ -8,25 +8,24 @@ export type CheckCategoryType = {
   iconName: string;
 };
 export type FoodCategoryType = {
-  categoryId: number;
+  _id: string;
   categoryName: string;
 };
 export type Food = {
-  id: number;
+  _id: string;
   foodName: string;
   ingredient: string[];
   image: string;
-  categoryId: number;
-  categoryName: string;
+  categoryId: string;
+  categoryName: string; //will deprecated soon
   initialPrice: number;
   discountPercent: number;
-  currency: string;
 };
 export type Order = {
-  _id: number;
-  userId: number;
+  _id: string;
+  userId: string;
   orderNumber: number;
-  foods: number[];
+  foods: string[];
   totalPrice: number;
   process: {
     isPaid: "PAID" | "NOT_PAID";
@@ -48,10 +47,23 @@ export type UserInfoType = {
 };
 export type CountPropsFunctionsType = [number, () => void, () => void];
 export type User = {
-  _id: number;
+  _id: string;
   name: string;
   email: string;
   password: string;
   phoneNumber: number;
   role: "ADMIN" | "USER";
+};
+
+export type FormActionPreviousState = {
+  error: string;
+};
+export type SearchParamsType = Promise<{
+  [key: string]: string | string[] | undefined;
+}>;
+export type ParamsType = Promise<{
+  [key: string]: string | string[] | undefined;
+}>;
+export type SearchParamsTypeNotPromise = {
+  [key: string]: string | string[] | undefined;
 };

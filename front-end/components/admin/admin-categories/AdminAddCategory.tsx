@@ -1,3 +1,6 @@
+"use client";
+
+// import { useActionState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -15,11 +18,20 @@ export function AdminAddCategory({
 }>) {
   return (
     <Dialog>
-      <DialogTrigger className="user-nav" asChild>
+      <DialogTrigger
+        className="w-full user-nav bg-white sticky bottom-0"
+        asChild
+      >
         {children}
       </DialogTrigger>
       <DialogContent className="sm:max-w-md flex justify-center">
-        <form className="flex flex-col p-8 gap-12 rounded-2xl w-[448px] ">
+        <form
+          className="flex flex-col p-8 gap-12 rounded-2xl w-[448px]"
+          action={`${process.env.NEXT_PUBLIC_DATABASE_URL}/category`}
+          method="post"
+          encType="multipart/form-data"
+          target="_self"
+        >
           <DialogHeader>
             <DialogTitle className="font-bold text-[24px] text-center">
               Create New Category
@@ -30,6 +42,7 @@ export function AdminAddCategory({
             <input
               type="text"
               id="category"
+              name="category"
               placeholder="Insert category"
               className="login-input"
             />
@@ -40,7 +53,10 @@ export function AdminAddCategory({
                 Clear
               </button>
             </DialogClose>
-            <button className="px-4 py-[10px] bg-[#393939] text-white font-bold rounded-sm">
+            <button
+              className="px-4 py-[10px] bg-[#393939] text-white font-bold rounded-sm"
+              type="submit"
+            >
               Continue
             </button>
           </fieldset>

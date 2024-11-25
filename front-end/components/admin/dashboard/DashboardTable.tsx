@@ -1,4 +1,4 @@
-import { orders, foods, users } from "@/lib/data-all/data";
+import { orders, foods, users } from "@/lib/data-all/mockData";
 import { DashboardTableRow } from "./DashboardTableRow";
 
 export const DashboardTable = () => {
@@ -7,10 +7,10 @@ export const DashboardTable = () => {
   orders.forEach((order) => {
     const user = users.find((user) => user._id === order.userId);
     order.foods.forEach((foodId) => {
-      const food = foods.find((food) => food.id === foodId);
+      const food = foods.find((food) => food._id === foodId);
       results.push(
         <DashboardTableRow
-          key={`${order._id}${user?._id}${food?.id}`}
+          key={`${order._id}${user?._id}${food?._id}`}
           order={order}
           food={food}
           user={user}

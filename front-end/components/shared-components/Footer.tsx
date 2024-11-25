@@ -4,7 +4,7 @@ import { FacebookIcon } from "../icons/FacebookIcon";
 import { InstagramIcon } from "../icons/InstagramIcon";
 import { Copyright } from "lucide-react";
 import { XIconNotLucide } from "../icons/TwitterIcon";
-import { contracts } from "@/lib/data-all/data";
+import { contracts } from "@/lib/data-all/mockData";
 export default function Footer() {
   return (
     <div

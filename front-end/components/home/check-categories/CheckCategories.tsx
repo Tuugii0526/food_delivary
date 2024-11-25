@@ -1,4 +1,4 @@
-import { checkCategoriesData } from "@/lib/data-all/data";
+import { checkCategoriesData } from "@/lib/data-all/mockData";
 import { CheckCategory } from "./CheckCategoryCard";
 export const CheckCategories = () => {
   return (
