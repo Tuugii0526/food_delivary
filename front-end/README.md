@@ -39,3 +39,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 //1.env is not matched with vercel env, probably
 //2. back-end is refreshed
 //3. life is temporary
+//4. Happy coding
