@@ -15,6 +15,7 @@ import { Switch } from "@/components/ui/switch";
 import clsx from "clsx";
 import { Food } from "@/lib/types";
 import { useInput } from "@/lib/customHooks";
+import Image from "next/image";
 export function FoodEditDialog({
   children,
   food,
@@ -131,9 +132,10 @@ export function FoodEditDialog({
                 </div>
               </div>
               <div className="h-[230px] w-[230px] flex justify-center items-center  bg-[#BABCC41F] rounded-lg relative">
-                <img
-                  src={food?.image}
+                <Image
+                  src={food?.image || "./heroFood.png"}
                   alt="image will inserted here"
+                  fill
                   style={{
                     width: "100%",
                     height: "100%",
