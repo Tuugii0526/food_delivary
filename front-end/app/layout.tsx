@@ -17,7 +17,6 @@ export default async function RootLayout({
   admin: React.ReactNode;
 }>) {
   const res = await getCategories();
-  console.log("res of categories in layout:", res);
   const { categories, message } = res;
   const isUser = false;
   return (

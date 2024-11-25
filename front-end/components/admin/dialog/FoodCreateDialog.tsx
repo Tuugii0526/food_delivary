@@ -14,6 +14,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import clsx from "clsx";
 import { useBeAwareContext } from "@/components/context/ContextProvider";
+import Image from "next/image";
 export function FoodCreateDialog({
   children,
 }: Readonly<{
@@ -153,9 +154,10 @@ export function FoodCreateDialog({
               </div>
               <div className="h-[230px] w-[230px] flex justify-center items-center  bg-[#BABCC41F] rounded-lg relative">
                 {previewImage && (
-                  <img
+                  <Image
                     src={previewImage}
                     alt="image"
+                    fill
                     style={{
                       width: "100%",
                       height: "100%",
