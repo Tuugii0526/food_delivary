@@ -11,5 +11,5 @@ app.use(cors());
 app.use("/api", foodRouter);
 app.use("/api", categoryRouter);
 app.listen(PORT, () => {
-  console.log(`Service started working `);
+  console.log(`Service started working : be aware be alert`);
 });
