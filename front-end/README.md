@@ -37,3 +37,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 //Problems
 //1.env is not matched with vercel env, probably
+//2. back-end is refreshed
