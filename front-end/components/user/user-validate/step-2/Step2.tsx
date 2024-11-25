@@ -7,7 +7,7 @@ export const Step2 = () => {
       <Step />
       <div className="flex flex-col gap-[40px] p-6  overflow-y-scroll">
         {foods.map((food) => (
-          <OrderFoodDisplay key={food?.id} food={food} />
+          <OrderFoodDisplay key={food?._id} food={food} />
         ))}
       </div>
     </div>
