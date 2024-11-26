@@ -2,8 +2,6 @@ import { poppins } from "@/app/fonts/fonts";
 import { AdminCategories } from "../admin-categories/AdminCategories";
 import { AdminAddCategory } from "../admin-categories/AdminAddCategory";
 import { Plus } from "lucide-react";
-import { useCurrentCategoryId } from "@/components/context/CategoryContextProvider";
-
 export const FirstColumn = () => {
   return (
     <div className="flex flex-col w-[258px]">

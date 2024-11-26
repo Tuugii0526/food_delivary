@@ -1,4 +1,3 @@
-import { foods } from "@/lib/data-all/mockData";
 import { AdminFoodCard } from "../admin-foods/AdminFoodCard";
 import { FoodCreateDialog } from "../dialog/FoodCreateDialog";
 import { useEffect, useState } from "react";
