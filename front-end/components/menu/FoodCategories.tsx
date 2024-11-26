@@ -1,4 +1,3 @@
-import { useBeAwareContext } from "../context/ContextProvider";
 import { FoodCategory } from "./FoodCategory";
 import { FoodCategoryType } from "@/lib/types";
 export const FoodCategories = ({

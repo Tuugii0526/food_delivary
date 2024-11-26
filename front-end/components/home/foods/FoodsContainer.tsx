@@ -1,4 +1,3 @@
-import { foods } from "@/lib/data-all/mockData";
 import { OneTypeFoods } from "./OneTypeFoods";
 import { CategoryGroupFoodsType } from "@/lib/types";
 export const FoodsContainer = async () => {

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useBeAwareContext } from "../context/ContextProvider";
 import { FoodCategories } from "./FoodCategories";
 import { FoodsMenu } from "./FoodsMenu";
