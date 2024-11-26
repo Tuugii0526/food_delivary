@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 const orderSchema = new mongoose.Schema({
   userId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   orderNumber: {
@@ -9,7 +10,7 @@ const orderSchema = new mongoose.Schema({
     required: true,
   },
   foods: {
-    type: [String],
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Food" }],
     required: true,
   },
   totalPrice: {
@@ -30,7 +31,7 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     default: Date(),
   },
-  distric: {
+  district: {
     type: String,
     required: true,
   },

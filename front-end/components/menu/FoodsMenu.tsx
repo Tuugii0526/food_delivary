@@ -1,11 +1,24 @@
-import { foods } from "@/lib/data-all/mockData";
+import { useEffect, useState } from "react";
 import { OneTypeFoods } from "../home/foods/OneTypeFoods";
 import { Food } from "@/lib/types";
+import { useCurrentCategoryId } from "../context/CategoryContextProvider";
 export const FoodsMenu = () => {
+  const { currentCategoryId } = useCurrentCategoryId();
+  const [categoryFoods, setCategoryFoods] = useState([]);
+  useEffect(() => {
+    async function fetchCategoryFoods() {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_DATABASE_URL}/food?categoryQuery=${currentCategoryId}`
+      );
+      const data = await res.json();
+      setCategoryFoods(data.data);
+    }
+    fetchCategoryFoods();
+  }, [currentCategoryId]);
   const result: JSX.Element[] = [];
   const temporaryContainer: Food[] = [];
   let key = 0;
-  foods.forEach((food) => {
+  categoryFoods.forEach((food) => {
     if (temporaryContainer.length < 4) {
       temporaryContainer.push(food);
     } else {

@@ -1,28 +1,27 @@
 import { foods } from "@/lib/data-all/mockData";
 import { OneTypeFoods } from "./OneTypeFoods";
-export const FoodsContainer = () => {
-  const result: JSX.Element[] = [];
-  let lastCategoryId: string = "0";
-  const categoryFoods = [];
-  for (let i = 0; i <= foods.length; i++) {
-    if (lastCategoryId === foods[i]?.categoryId) {
-      categoryFoods.push(foods[i]);
-    } else {
-      if (categoryFoods.length) {
-        const categoryName =
-          categoryFoods[categoryFoods.length - 1].categoryName;
-        result.push(
-          <OneTypeFoods
-            key={lastCategoryId}
-            foods={[...categoryFoods]}
-            categoryName={categoryName}
-          />
-        );
-        categoryFoods.splice(0, categoryFoods.length, foods[i]);
-      }
-    }
-    lastCategoryId = foods[i]?.categoryId;
-  }
+import { CategoryGroupFoodsType } from "@/lib/types";
+export const FoodsContainer = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/food`);
+  const data = await res.json();
 
-  return <div className="container flex flex-col gap-20 mb-20">{result}</div>;
+  return (
+    <div className="container flex flex-col gap-20 mb-20">
+      {data.success ? (
+        data.data.map((d: CategoryGroupFoodsType) => {
+          if (d.CategoryFoods.length) {
+            return (
+              <OneTypeFoods
+                key={d.Category._id}
+                foods={d.CategoryFoods}
+                categoryName={d.Category.categoryName}
+              />
+            );
+          }
+        })
+      ) : (
+        <p className="text-red-600">{data.message}</p>
+      )}
+    </div>
+  );
 };
