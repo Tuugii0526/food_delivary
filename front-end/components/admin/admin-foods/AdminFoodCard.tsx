@@ -6,9 +6,11 @@ import { DiscountPercent } from "@/components/home/foods/one-type-foods/Discount
 import Image from "next/image";
 import { poppins } from "@/app/fonts/fonts";
 import { FoodEditDialog } from "../dialog/FoodEditDialog";
+import { imageUrlOptimizer } from "@/lib/utils";
 
 export const AdminFoodCard = ({ food }: { food: Food }) => {
   // const [hover, setHover] = useState(false);
+  const optimizedUrl = imageUrlOptimizer(food.image);
   const prices: JSX.Element[] = [];
   if (food.discountPercent) {
     const discountPrice = Math.floor(
@@ -47,7 +49,7 @@ export const AdminFoodCard = ({ food }: { food: Food }) => {
             {food.discountPercent > 0 && (
               <DiscountPercent discountPercent={food.discountPercent} />
             )}
-            <Image src={food.image} alt={food.foodName} fill />
+            <Image src={optimizedUrl} alt={food.foodName} fill />
             {/* <div
               className={`w-full h-full absolute inset-0 bg-black opacity-80 z-20 flex rounded-sm  justify-center items-center transition duration-200 `}
             >
