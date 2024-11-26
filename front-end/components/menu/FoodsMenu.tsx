@@ -3,8 +3,9 @@ import { OneTypeFoods } from "../home/foods/OneTypeFoods";
 import { Food } from "@/lib/types";
 import { useCurrentCategoryId } from "../context/CategoryContextProvider";
 export const FoodsMenu = () => {
-  const { currentCategoryId } = useCurrentCategoryId();
-  const [categoryFoods, setCategoryFoods] = useState([]);
+  const { curCat } = useCurrentCategoryId();
+  const [categoryFoods, setCategoryFoods] = useState<Food[]>([]);
+  const currentCategoryId = curCat._id;
   useEffect(() => {
     async function fetchCategoryFoods() {
       const res = await fetch(

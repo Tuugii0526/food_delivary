@@ -9,7 +9,7 @@ export const SubMenu = () => {
   const { categories } = useBeAwareContext();
   return (
     <div className="container flex flex-col">
-      <CategoryContextProvider currentCategory={categories[0]._id}>
+      <CategoryContextProvider currentCategory={categories[0]}>
         <FoodCategories categories={categories} />
         <FoodsMenu />
       </CategoryContextProvider>
