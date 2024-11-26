@@ -67,3 +67,8 @@ export type ParamsType = Promise<{
 export type SearchParamsTypeNotPromise = {
   [key: string]: string | string[] | undefined;
 };
+
+export type CategoryGroupFoodsType = {
+  Category: FoodCategoryType & { _v: number };
+  CategoryFoods: (Food & { _v: number })[];
+};

@@ -1,7 +1,6 @@
 import { CheckCategories } from "@/components/home/check-categories/CheckCategories";
 import { FoodsContainer } from "@/components/home/foods/FoodsContainer";
 import { Hero } from "@/components/home/hero/Hero";
-
 export default async function Home() {
   // let data;
   // let error;
@@ -14,9 +13,9 @@ export default async function Home() {
   // }
   return (
     <>
-      <Hero/>
-      <CheckCategories/>
-      <FoodsContainer/>
+      <Hero />
+      <CheckCategories />
+      <FoodsContainer />
     </>
   );
 }

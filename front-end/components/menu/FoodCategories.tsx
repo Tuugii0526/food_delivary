@@ -1,9 +1,13 @@
-import { foodCategories } from "@/lib/data-all/mockData";
 import { FoodCategory } from "./FoodCategory";
-export const FoodCategories = () => {
+import { FoodCategoryType } from "@/lib/types";
+export const FoodCategories = ({
+  categories,
+}: {
+  categories: FoodCategoryType[];
+}) => {
   return (
     <div className="w-full h-fit py-8 flex gap-[3%] overflowY-scroll">
-      {foodCategories.map((foodCategory) => (
+      {categories.map((foodCategory) => (
         <FoodCategory key={foodCategory._id} category={foodCategory} />
       ))}
     </div>

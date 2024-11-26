@@ -9,10 +9,11 @@ export const OneTypeFoods = ({
   foods: Food[];
   categoryName?: string;
 }) => {
+  const length = foods.length;
   return (
     <div className="flex flex-col justify-around">
       {typeof categoryName !== "undefined" && (
-        <Top categoryName={categoryName} />
+        <Top categoryName={categoryName} length={length} />
       )}
       <div className="w-full h-fit flex gap-6 overflow-hidden">
         {foods.map((food) => (

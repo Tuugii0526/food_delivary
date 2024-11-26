@@ -1,5 +1,5 @@
 import { SubMenu } from "@/components/menu/SubMenu";
 
-export default function Page() {
+export default async function Page() {
   return <SubMenu />;
 }

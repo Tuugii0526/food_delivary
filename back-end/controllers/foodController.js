@@ -1,6 +1,7 @@
 import { Food } from "../model/index.js";
 import { v2 as cloudinary } from "cloudinary";
 import "dotenv/config";
+import { getAllBlogsByCategories } from "../lib/getAllBlogs.js";
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUDNAME,
   api_key: process.env.CLOUDINARY_APIKEY,
@@ -8,11 +9,19 @@ cloudinary.config({
   secure: true,
 });
 const getFoods = async (req, res, next) => {
+  const { categoryQuery } = req.query;
   try {
-    const foods = await Food.find();
+    if (!categoryQuery) {
+      const foods = await getAllBlogsByCategories();
+      return res.json({
+        success: true,
+        data: foods,
+      });
+    }
+    const categoryFoods = await Food.find({ categoryId: categoryQuery });
     return res.json({
       success: true,
-      data: foods,
+      data: categoryFoods,
     });
   } catch (error) {
     return res.json({
@@ -74,4 +83,19 @@ const createFood = async (req, res, next) => {
     return res.redirect(`${process.env.FRONTEND_URL}`);
   }
 };
-export { createFood, getFoods };
+const deleteFood = async (req, res, next) => {
+  try {
+    const { id } = req.query;
+    const result = await Food.findByIdAndDelete(id);
+    return res.status(200).json({
+      success: true,
+      result: result,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: `${error}`,
+    });
+  }
+};
+export { createFood, getFoods, deleteFood };
