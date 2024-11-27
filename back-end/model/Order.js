@@ -17,14 +17,31 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  // role: {
+  //   type: String,
+  //   enum: {
+  //     values: ["ADMIN", "USER"],
+  //     message: "{VALUE} is not a valid role",
+  //   },
+  //   default: "USER",
+  //   required: true,
+  // },
   process: {
     isPaid: {
       type: String,
-      required: true,
+      enum: {
+        values: ["PAID", "NOT_PAID"],
+        message: "invalid pay status",
+      },
+      default: "PAID",
     },
     deliveryStatus: {
       type: String,
-      required: true,
+      enum: {
+        values: ["PROGRESS", "DELIVERED", "WAITING", "ACTIVE"],
+        message: "invalid delivery status",
+      },
+      default: "ACTIVE",
     },
   },
   createdAt: {
