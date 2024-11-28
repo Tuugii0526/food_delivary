@@ -5,7 +5,7 @@ import { useCurrentCategoryId } from "../context/CategoryContextProvider";
 export const FoodsMenu = () => {
   const { curCat } = useCurrentCategoryId();
   const [categoryFoods, setCategoryFoods] = useState<Food[]>([]);
-  const currentCategoryId = curCat._id;
+  const currentCategoryId = curCat?._id;
   useEffect(() => {
     async function fetchCategoryFoods() {
       const res = await fetch(
@@ -19,18 +19,20 @@ export const FoodsMenu = () => {
   const result: JSX.Element[] = [];
   const temporaryContainer: Food[] = [];
   let key = 0;
-  categoryFoods.forEach((food) => {
-    if (temporaryContainer.length < 4) {
-      temporaryContainer.push(food);
-    } else {
+  if (categoryFoods.length > 0) {
+    categoryFoods.forEach((food) => {
+      if (temporaryContainer.length < 4) {
+        temporaryContainer.push(food);
+      } else {
+        result.push(<OneTypeFoods key={key} foods={[...temporaryContainer]} />);
+        temporaryContainer.splice(0, temporaryContainer.length);
+        temporaryContainer.push(food);
+      }
+      key++;
+    });
+    if (temporaryContainer.length !== 0) {
       result.push(<OneTypeFoods key={key} foods={[...temporaryContainer]} />);
-      temporaryContainer.splice(0, temporaryContainer.length);
-      temporaryContainer.push(food);
     }
-    key++;
-  });
-  if (temporaryContainer.length !== 0) {
-    result.push(<OneTypeFoods key={key} foods={[...temporaryContainer]} />);
   }
   return <div className="my-20 w-full flex flex-col gap-20">{result}</div>;
 };

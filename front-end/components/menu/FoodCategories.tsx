@@ -5,11 +5,13 @@ export const FoodCategories = ({
 }: {
   categories: FoodCategoryType[];
 }) => {
-  return (
+  return categories.length ? (
     <div className="w-full h-fit py-8 flex gap-[3%] overflowY-scroll">
       {categories.map((foodCategory) => (
         <FoodCategory key={foodCategory._id} category={foodCategory} />
       ))}
     </div>
+  ) : (
+    <p>No data</p>
   );
 };
