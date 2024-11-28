@@ -68,11 +68,15 @@ export function FoodCreateDialog({
                 id="foodCategory"
                 className="login-input"
               >
-                {categories?.map((category) => (
-                  <option key={category._id} value={category._id}>
-                    {category.categoryName}
-                  </option>
-                ))}
+                {categories.length ? (
+                  categories?.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.categoryName}
+                    </option>
+                  ))
+                ) : (
+                  <option>No data</option>
+                )}
               </select>
             </label>
             <label

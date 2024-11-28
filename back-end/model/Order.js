@@ -20,16 +20,24 @@ const orderSchema = new mongoose.Schema({
   process: {
     isPaid: {
       type: String,
-      required: true,
+      enum: {
+        values: ["PAID", "NOT_PAID"],
+        message: "invalid pay status",
+      },
+      default: "NOT_PAID",
     },
     deliveryStatus: {
       type: String,
-      required: true,
+      enum: {
+        values: ["PROGRESS", "DELIVERED", "WAITING", "ACTIVE"],
+        message: "invalid delivery status",
+      },
+      default: "ACTIVE",
     },
   },
   createdAt: {
-    type: Date,
-    default: Date(),
+    type: String,
+    default: new Date(),
   },
   district: {
     type: String,

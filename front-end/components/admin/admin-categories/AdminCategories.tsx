@@ -9,10 +9,12 @@ export const AdminCategories = () => {
     <>
       {message ? (
         <p className="text-red-600">{message}</p>
-      ) : (
+      ) : categories.length ? (
         categories.map((category) => (
           <AdminCategory key={category._id} category={category} />
         ))
+      ) : (
+        <p>No data</p>
       )}
     </>
   );

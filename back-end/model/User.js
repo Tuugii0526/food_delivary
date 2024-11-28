@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   phoneNumber: {
-    type: Number,
+    type: String,
     required: true,
   },
   role: {
@@ -23,7 +23,6 @@ const userSchema = new mongoose.Schema({
       message: "{VALUE} is not a valid role",
     },
     default: "USER",
-    required: true,
   },
 });
 const User = mongoose.model("User", userSchema);

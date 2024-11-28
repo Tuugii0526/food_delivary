@@ -1,10 +1,6 @@
 import express from "express";
 import multer from "multer";
-import {
-  createFood,
-  deleteFood,
-  getFoods,
-} from "../controllers/foodController.js";
+import { createFood, deleteFood, getFoods } from "../controllers/food.js";
 const upload = multer();
 const foodRouter = express.Router();
 foodRouter.get("/food", getFoods);

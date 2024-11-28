@@ -7,17 +7,21 @@ export const FoodsContainer = async () => {
   return (
     <div className="container flex flex-col gap-20 mb-20">
       {data.success ? (
-        data.data.map((d: CategoryGroupFoodsType) => {
-          if (d.CategoryFoods.length) {
-            return (
-              <OneTypeFoods
-                key={d.Category._id}
-                foods={d.CategoryFoods}
-                categoryName={d.Category.categoryName}
-              />
-            );
-          }
-        })
+        data.data.length ? (
+          data.data.map((d: CategoryGroupFoodsType) => {
+            if (d.CategoryFoods.length) {
+              return (
+                <OneTypeFoods
+                  key={d.Category._id}
+                  foods={d.CategoryFoods}
+                  categoryName={d.Category.categoryName}
+                />
+              );
+            }
+          })
+        ) : (
+          <p>No data</p>
+        )
       ) : (
         <p className="text-red-600">{data.message}</p>
       )}

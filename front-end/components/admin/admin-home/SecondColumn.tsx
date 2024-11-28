@@ -7,7 +7,7 @@ import { Food } from "@/lib/types";
 export const SecondColumn = () => {
   const { curCat } = useCurrentCategoryId();
   const [categoryFoods, setCategoryFoods] = useState<Food[]>([]);
-  const currentCategoryId = curCat._id;
+  const currentCategoryId = curCat?._id;
   useEffect(() => {
     async function fetchCategoryFoods() {
       const res = await fetch(
@@ -21,7 +21,9 @@ export const SecondColumn = () => {
   return (
     <div className="flex  flex-col p-6 gap-8 h-[1228px] grow ">
       <div className="flex justify-between">
-        <p className="font-bold text-[24px]">{curCat.categoryName}</p>
+        <p className="font-bold text-[24px]">
+          {curCat?.categoryName || "No category"}
+        </p>
         <FoodCreateDialog>
           <button className="py-2 px-4 bg-[#18BA51] rounded-sm text-white">
             Add new food
@@ -29,9 +31,13 @@ export const SecondColumn = () => {
         </FoodCreateDialog>
       </div>
       <div className="grid grid-cols-3 gap-x-6 gap-y-[60px] ">
-        {categoryFoods.map((food) => (
-          <AdminFoodCard key={food._id} food={food} />
-        ))}
+        {categoryFoods.length ? (
+          categoryFoods.map((food) => (
+            <AdminFoodCard key={food._id} food={food} />
+          ))
+        ) : (
+          <p>No data</p>
+        )}
       </div>
     </div>
   );

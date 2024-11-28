@@ -25,6 +25,7 @@ export function FoodCardDialog({
   finalPrice: number;
 }) {
   const countPropsFunctions = useCount();
+  // const [count] = countPropsFunctions;
   return (
     <Dialog>
       <DialogTrigger className="user-nav" asChild>

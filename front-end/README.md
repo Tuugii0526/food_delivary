@@ -40,3 +40,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 //2. back-end is refreshed
 //3. life is temporary
 //4. Happy coding
+//5 . Be aware be alert
