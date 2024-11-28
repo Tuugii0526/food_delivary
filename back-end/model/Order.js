@@ -17,15 +17,6 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  // role: {
-  //   type: String,
-  //   enum: {
-  //     values: ["ADMIN", "USER"],
-  //     message: "{VALUE} is not a valid role",
-  //   },
-  //   default: "USER",
-  //   required: true,
-  // },
   process: {
     isPaid: {
       type: String,
@@ -33,7 +24,7 @@ const orderSchema = new mongoose.Schema({
         values: ["PAID", "NOT_PAID"],
         message: "invalid pay status",
       },
-      default: "PAID",
+      default: "NOT_PAID",
     },
     deliveryStatus: {
       type: String,
@@ -45,8 +36,8 @@ const orderSchema = new mongoose.Schema({
     },
   },
   createdAt: {
-    type: Date,
-    default: Date(),
+    type: String,
+    default: new Date(),
   },
   district: {
     type: String,

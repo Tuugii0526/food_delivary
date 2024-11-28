@@ -19,7 +19,7 @@ const createUser = async (req, res) => {
       name: "Tuguldur",
       email: "namjildorjtuguldur1234@gmail.com",
       password: "happyCode",
-      phoneNumber: 90914944,
+      phoneNumber: "90914944",
     });
     return res.status(200).json({
       success: true,
