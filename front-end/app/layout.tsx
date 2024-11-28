@@ -18,7 +18,7 @@ export default async function RootLayout({
 }>) {
   const res = await getCategories();
   const { categories, message } = res;
-  const isUser = true;
+  const isUser = false;
   return (
     <html lang="en">
       <body>
