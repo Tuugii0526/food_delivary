@@ -69,7 +69,7 @@ export function Login({
                 href={"/sign-up"}
                 className="login-button border border-[#18BA51]"
               >
-                Бүртгүүлэх
+                Нэвтрэх
               </Link>
             </DialogClose>
           </fieldset>

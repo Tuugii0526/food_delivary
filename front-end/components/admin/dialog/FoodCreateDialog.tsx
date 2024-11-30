@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 import {
   Dialog,
   DialogClose,
@@ -23,6 +23,19 @@ export function FoodCreateDialog({
   const { categories } = useBeAwareContext();
   const [checked, setChecked] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>("");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/food`, {
+        method: "post",
+        body: formData,
+      });
+      console.log("res from creating food:", res);
+    } catch (error) {
+      console.log("error:", error);
+    }
+  };
   return (
     <Dialog>
       <DialogTrigger
@@ -37,10 +50,7 @@ export function FoodCreateDialog({
       <DialogContent className="h-fit w-fit">
         <form
           className="flex  gap-4 rounded-2xl w-fit h-fit"
-          action={`${process.env.NEXT_PUBLIC_DATABASE_URL}/food`}
-          method="post"
-          encType="multipart/form-data"
-          target="_self"
+          onSubmit={handleSubmit}
         >
           <div className="flex flex-col gap-4">
             <DialogHeader>
