@@ -1,6 +1,6 @@
 import { BookOpen, ChefHatIcon, Clock, MenuSquare } from "lucide-react";
 
-const checkCategoryIcons = [
+export const checkCategoryIcons = [
   {
     id: 1,
     iconName: "BookOpen",
@@ -22,4 +22,3 @@ const checkCategoryIcons = [
     icon: <MenuSquare />,
   },
 ];
-export { checkCategoryIcons };
