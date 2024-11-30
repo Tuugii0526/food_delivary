@@ -21,8 +21,9 @@ export const SignUp = () => {
         body: formData,
       });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok) {
         toast("You have successfull created an account");
+        router.push("/");
       } else {
         toast(`Failed to create an account .${data.message}`);
       }

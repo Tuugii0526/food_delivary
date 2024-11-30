@@ -57,7 +57,7 @@ export const PasswordCheck = ({
       {checks.map((check) => (
         <p
           key={check.id}
-          className={clsx("text-red-600", {
+          className={clsx({
             "text-green-600": check.regex.test(password),
           })}
         >
