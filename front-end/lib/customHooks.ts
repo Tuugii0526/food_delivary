@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { useState } from "react";
 import { CountPropsFunctionsType } from "./types";
 export const useCount = () => {
   const [count, setCount] = useState<number>(0);
