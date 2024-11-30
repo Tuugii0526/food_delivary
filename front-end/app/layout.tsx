@@ -18,7 +18,7 @@ export default async function RootLayout({
 }>) {
   const res = await getCategories();
   const { categories, message } = res;
-  const isUser = false;
+  const isUser = true;
   return (
     <html lang="en">
       <body>
@@ -32,7 +32,7 @@ export default async function RootLayout({
           ) : (
             admin
           )}
-          <Toaster />
+          <Toaster position="top-right" />
         </ContextProvider>
       </body>
     </html>

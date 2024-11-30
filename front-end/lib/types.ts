@@ -64,11 +64,18 @@ export type SearchParamsType = Promise<{
 export type ParamsType = Promise<{
   [key: string]: string | string[] | undefined;
 }>;
-export type SearchParamsTypeNotPromise = {
-  [key: string]: string | string[] | undefined;
-};
+// export type SearchParamsTypeNotPromise = {
+//   errors: validatedFields.error.flatten().fieldErrors
+// };
 
 export type CategoryGroupFoodsType = {
   Category: FoodCategoryType & { _v: number };
   CategoryFoods: (Food & { _v: number })[];
+};
+
+export type SignupState = {
+  errors: {
+    [key: string]: string[];
+  };
+  messages: string;
 };
