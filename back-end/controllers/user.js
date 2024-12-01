@@ -1,22 +1,6 @@
 import { User } from "../model/index.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-const secretKey = process.env.SESSION_SECRET;
-export const key = new TextEncoder().encode(secretKey);
-const getUsers = async (req, res) => {
-  try {
-    const users = await User.find();
-    return res.status(200).json({
-      success: true,
-      data: users,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: `${messgae}`,
-    });
-  }
-};
 const createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -51,30 +35,27 @@ const login = async (req, res) => {
     const foundUser = await User.findOne({
       email: email,
     });
-    console.log("foundUser:", foundUser);
     if (!foundUser) {
       return res.status(401).json({
-        message: "Authentication failed",
+        message: "You don't have an account",
       });
     }
     const passwordMatch = await bcrypt.compare(password, foundUser.password);
     if (!passwordMatch) {
       return res.status(401).json({
-        message: "Authentication failed",
+        message: "Your password is incorrect",
       });
     }
+    const exp = Math.floor(Date.now() / 1000) + 1 * 60;
     const token = jwt.sign(
-      { userId: foundUser._id, role: foundUser.role },
-      key,
-      {
-        expiresIn: "1800s",
-      }
+      { userId: foundUser._id, role: foundUser.role, exp: exp },
+      process.env.SESSION_SECRET
     );
-    return res.status(200).json({ token });
+    return res.status(200).json({ token, exp });
   } catch (error) {
     return res.status(500).json({
       message: `${error}`,
     });
   }
 };
-export { getUsers, createUser, login };
+export { createUser, login };
