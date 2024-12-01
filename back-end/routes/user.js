@@ -1,6 +1,8 @@
 import express from "express";
-import { getUsers, createUser } from "../controllers/user.js";
+import multer from "multer";
+const upload = multer();
+import { createUser, login } from "../controllers/user.js";
 const userRouter = express.Router();
-userRouter.get("/user", getUsers);
-userRouter.post("/user", createUser);
+userRouter.post("/user", upload.array(), createUser);
+userRouter.post("/login", upload.array(), login);
 export default userRouter;

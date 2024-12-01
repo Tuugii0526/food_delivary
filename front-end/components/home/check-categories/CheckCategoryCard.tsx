@@ -1,5 +1,5 @@
 import { CheckCategoryType } from "@/lib/types";
-import { checkCategoryIcons } from "@/lib/data-all/checkCategoryIcons";
+import { checkCategoryIcons } from "@/lib/data-all/CheckCategoryIcons";
 import { poppins } from "@/app/fonts/fonts";
 export const CheckCategory = ({
   checkCategory,

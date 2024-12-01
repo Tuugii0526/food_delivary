@@ -41,3 +41,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 //3. life is temporary
 //4. Happy coding
 //5 . Be aware be alert
+//6 . Restfull happy code
