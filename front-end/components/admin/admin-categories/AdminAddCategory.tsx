@@ -39,10 +39,7 @@ export function AdminAddCategory({
       <DialogContent className="sm:max-w-md flex justify-center">
         <form
           className="flex flex-col p-8 gap-12 rounded-2xl w-[448px]"
-          action={`${process.env.NEXT_PUBLIC_DATABASE_URL}/category`}
-          method="post"
-          encType="multipart/form-data"
-          target="_self"
+          onSubmit={handleSubmit}
         >
           <DialogHeader>
             <DialogTitle className="font-bold text-[24px] text-center">
