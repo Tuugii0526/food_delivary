@@ -19,7 +19,6 @@ export default async function RootLayout({
 }>) {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
-  console.log("token of layout:", token);
   const user = await getUser(token);
   const res = await getCategories();
   const { categories, message } = res;
