@@ -1,5 +1,5 @@
-import { Food } from "../model/index.js";
 import { v2 as cloudinary } from "cloudinary";
+import { Food } from "../model/index.js";
 import "dotenv/config";
 import { getAllBlogsByCategories } from "../lib/getAllBlogs.js";
 cloudinary.config({
