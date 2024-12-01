@@ -21,14 +21,13 @@ export function Login({
     e.preventDefault();
     try {
       const formData = new FormData(e.currentTarget);
-      console.log("formdata inside login:", formData);
       const res = await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/login`, {
         method: "post",
         body: formData,
       });
-      const { token } = await res.json();
-      document.cookie = `token=${token}`;
-      console.log("data is:", token);
+      const { token, exp } = await res.json();
+      const expiresAt = new Date(exp * 1000).toUTCString();
+      document.cookie = `token=${token};expires=${expiresAt};Samesite=Lax;Secure;`;
     } catch (error) {
       console.log(`error:${error}`);
     }
