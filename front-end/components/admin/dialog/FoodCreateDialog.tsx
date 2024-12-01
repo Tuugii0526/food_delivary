@@ -27,13 +27,12 @@ export function FoodCreateDialog({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/food`, {
+      await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/food`, {
         method: "post",
         body: formData,
       });
-      console.log("res from creating food:", res);
     } catch (error) {
-      console.log("error:", error);
+      throw new Error(`${error}`);
     }
   };
   return (
@@ -188,12 +187,14 @@ export function FoodCreateDialog({
                   Clear
                 </button>
               </DialogClose>
-              <button
-                className="px-4 py-[10px] bg-[#393939] text-white font-bold rounded-sm"
-                type="submit"
-              >
-                Continue
-              </button>
+              <DialogClose asChild>
+                <button
+                  className="px-4 py-[10px] bg-[#393939] text-white font-bold rounded-sm"
+                  type="submit"
+                >
+                  Continue
+                </button>
+              </DialogClose>
             </fieldset>
           </div>
         </form>

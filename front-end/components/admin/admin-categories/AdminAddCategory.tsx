@@ -16,6 +16,18 @@ export function AdminAddCategory({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/category`, {
+        method: "post",
+        body: formData,
+      });
+    } catch (error) {
+      console.log("error:", error);
+    }
+  };
   return (
     <Dialog>
       <DialogTrigger
