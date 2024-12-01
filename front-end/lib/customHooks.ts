@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { CountPropsFunctionsType } from "./types";
 export const useCount = () => {
   const [count, setCount] = useState<number>(0);
@@ -27,4 +27,20 @@ export const useInput = (initialValue: string) => {
     onChange: handleChange,
   };
   return inputProps;
+};
+export const useCheckFormInputs = () => {
+  const [correct, setCorrect] = useState(false);
+  const onChange = (e: ChangeEvent<HTMLFormElement>) => {
+    let letterSum = 0;
+    const formData = new FormData(e.currentTarget);
+    for (const data of formData.values()) {
+      letterSum += data ? 1 : 0;
+    }
+    if (letterSum == formData.values().toArray().length) {
+      setCorrect(true);
+    } else {
+      setCorrect(false);
+    }
+  };
+  return { correct, onChange };
 };

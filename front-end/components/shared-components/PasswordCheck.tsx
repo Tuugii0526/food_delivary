@@ -59,6 +59,7 @@ export const PasswordCheck = ({
           key={check.id}
           className={clsx({
             "text-green-600": check.regex.test(password),
+            "text-red-600": !check.regex.test(password),
           })}
         >
           {check.checkName}

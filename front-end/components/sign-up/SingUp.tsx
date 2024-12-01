@@ -5,7 +5,9 @@ import { PasswordCheck } from "../shared-components/PasswordCheck";
 import { isPasswordCorrect } from "@/lib/utils";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useCheckFormInputs } from "@/lib/customHooks";
 export const SignUp = () => {
+  const { correct, onChange } = useCheckFormInputs();
   const [password, setPassword] = useState<string>("");
   const [rePassword, setRepassword] = useState<string>("");
   const router = useRouter();
@@ -36,9 +38,10 @@ export const SignUp = () => {
     <form
       className="flex flex-col p-8 gap-12 rounded-2xl w-[448px] m-auto mb-10"
       onSubmit={onSubmit}
+      onChange={onChange}
     >
       <p className="font-bold text-3xl text-center">Бүртгүүлэх</p>
-      <fieldset className="relative flex flex-col gap-2 pb-2 w-full">
+      <div className="relative flex flex-col gap-2 pb-2 w-full">
         <label htmlFor="name" className="flex flex-col gap-1">
           Нэр
           <input
@@ -73,10 +76,7 @@ export const SignUp = () => {
             name="rePassword"
             id="rePassword"
             placeholder="Нууц үгээ давтан оруулна уу"
-            className={`login-input ${
-              !isPasswordCorrect(password) ? "cursor-not-allowed" : ""
-            }`}
-            disabled={!isPasswordCorrect(password)}
+            className={`login-input`}
             required
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setRepassword(e.target.value);
@@ -86,19 +86,24 @@ export const SignUp = () => {
             <p className="text-red-600">Passwords are not matched</p>
           )}
         </label>
-      </fieldset>
-      <fieldset className="flex flex-col gap-8 ">
+      </div>
+      <div className="flex flex-col gap-8 ">
         <label htmlFor="serviceContract" className=" flex gap-2">
-          <input type="checkbox" />
+          <input type="checkbox" name="serviceContract" required />
           <p>Үйлчилгээний нөхцөл зөвшөөрөх</p>
         </label>
         <button
-          className={`login-button border border-[#18BA51] `}
+          className={`login-button border border-[#18BA51] ${
+            correct ? " bg-green-500" : ""
+          } `}
           type="submit"
+          onClick={() => {
+            router.push("/");
+          }}
         >
           Бүртгүүлэх
         </button>
-      </fieldset>
+      </div>
     </form>
   );
 };

@@ -42,3 +42,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 //4. Happy coding
 //5 . Be aware be alert
 //6 . Restfull happy code
+//7. Be aware be alert
+//8 . Fixed time is important
