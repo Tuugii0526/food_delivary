@@ -62,12 +62,14 @@ export function AdminAddCategory({
                 Clear
               </button>
             </DialogClose>
-            <button
-              className="px-4 py-[10px] bg-[#393939] text-white font-bold rounded-sm"
-              type="submit"
-            >
-              Continue
-            </button>
+            <DialogClose asChild>
+              <button
+                className="px-4 py-[10px] bg-[#393939] text-white font-bold rounded-sm"
+                type="submit"
+              >
+                Continue
+              </button>
+            </DialogClose>
           </fieldset>
         </form>
       </DialogContent>
