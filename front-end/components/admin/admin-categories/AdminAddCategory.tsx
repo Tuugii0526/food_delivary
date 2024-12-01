@@ -16,6 +16,18 @@ export function AdminAddCategory({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/category`, {
+        method: "post",
+        body: formData,
+      });
+    } catch (error) {
+      console.log("error:", error);
+    }
+  };
   return (
     <Dialog>
       <DialogTrigger
@@ -27,10 +39,7 @@ export function AdminAddCategory({
       <DialogContent className="sm:max-w-md flex justify-center">
         <form
           className="flex flex-col p-8 gap-12 rounded-2xl w-[448px]"
-          action={`${process.env.NEXT_PUBLIC_DATABASE_URL}/category`}
-          method="post"
-          encType="multipart/form-data"
-          target="_self"
+          onSubmit={handleSubmit}
         >
           <DialogHeader>
             <DialogTitle className="font-bold text-[24px] text-center">
@@ -53,12 +62,14 @@ export function AdminAddCategory({
                 Clear
               </button>
             </DialogClose>
-            <button
-              className="px-4 py-[10px] bg-[#393939] text-white font-bold rounded-sm"
-              type="submit"
-            >
-              Continue
-            </button>
+            <DialogClose asChild>
+              <button
+                className="px-4 py-[10px] bg-[#393939] text-white font-bold rounded-sm"
+                type="submit"
+              >
+                Continue
+              </button>
+            </DialogClose>
           </fieldset>
         </form>
       </DialogContent>

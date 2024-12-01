@@ -21,9 +21,7 @@ const createCategory = async (req, res) => {
     await Category.create({
       categoryName: category,
     });
-    return res.redirect(
-      `${process.env.FRONTEND_URL}?isCategoryCreated=${category}`
-    );
+    return res.redirect(`${process.env.FRONTEND_URL}`);
   } catch (error) {
     return res.redirect(`${process.env.FRONTEND_URL}`);
   }
