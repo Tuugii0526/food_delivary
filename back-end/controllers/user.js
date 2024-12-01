@@ -46,7 +46,7 @@ const login = async (req, res) => {
         message: "Your password is incorrect",
       });
     }
-    const exp = Math.floor(Date.now() / 1000) + 1 * 60;
+    const exp = Math.floor(Date.now() / 1000) + 30 * 60;
     const token = jwt.sign(
       { userId: foundUser._id, role: foundUser.role, exp: exp },
       process.env.SESSION_SECRET

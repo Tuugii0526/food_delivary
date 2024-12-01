@@ -41,7 +41,7 @@ export const SignUp = () => {
       onChange={onChange}
     >
       <p className="font-bold text-3xl text-center">Бүртгүүлэх</p>
-      <fieldset className="relative flex flex-col gap-2 pb-2 w-full">
+      <div className="relative flex flex-col gap-2 pb-2 w-full">
         <label htmlFor="name" className="flex flex-col gap-1">
           Нэр
           <input
@@ -86,8 +86,8 @@ export const SignUp = () => {
             <p className="text-red-600">Passwords are not matched</p>
           )}
         </label>
-      </fieldset>
-      <fieldset className="flex flex-col gap-8 ">
+      </div>
+      <div className="flex flex-col gap-8 ">
         <label htmlFor="serviceContract" className=" flex gap-2">
           <input type="checkbox" name="serviceContract" required />
           <p>Үйлчилгээний нөхцөл зөвшөөрөх</p>
@@ -103,7 +103,7 @@ export const SignUp = () => {
         >
           Бүртгүүлэх
         </button>
-      </fieldset>
+      </div>
     </form>
   );
 };
