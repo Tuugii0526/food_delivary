@@ -6,7 +6,7 @@ export function authenticateToken(req, res, next) {
       userId: "",
     });
   }
-  const token = authHeader ?? authHeader.split(" ")[1];
+  const token = authHeader ?? authHeader?.split(" ")[1];
   try {
     const decoded = jwt.verify(token, process.env.SESSION_SECRET);
     req.user = decoded;
