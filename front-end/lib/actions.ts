@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 // import { revalidatePath } from "next/cache";
 // import { cookies } from "next/headers";
 // import { cache } from "react";
@@ -9,3 +11,11 @@
 //     revalidatePath("/", "layout");
 //   }
 // });
+
+export async function deleteToken() {
+  (await cookies()).delete("token");
+  revalidatePath("/", "layout");
+}
+export async function login() {
+  revalidatePath("/", "layout");
+}

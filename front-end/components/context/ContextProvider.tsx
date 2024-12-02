@@ -1,29 +1,44 @@
 "use client";
 
-import { FoodCategoryType } from "@/lib/types";
-import { useContext, createContext, useState, useMemo } from "react";
+import {
+  CategoryResponseType,
+  // FoodCategoryType,
+  ValidatedUserType,
+} from "@/lib/types";
+import {
+  useContext,
+  createContext,
+  //  useState,
+  useMemo,
+} from "react";
 type ContextType = {
-  categories: FoodCategoryType[];
-  message: string;
+  categoryResponse: CategoryResponseType;
+  user: ValidatedUserType;
 };
 const Context = createContext<ContextType>({
-  categories: [],
-  message: "",
+  categoryResponse: {
+    success: false,
+    message: "",
+    categories: [],
+  },
+  user: {
+    userId: "",
+  },
 });
 export const ContextProvider = ({
   children,
-  categories,
-  message,
+  categoryResponse,
+  user,
 }: {
   children: React.ReactNode;
-  categories: FoodCategoryType[];
-  message: string;
+  categoryResponse: CategoryResponseType;
+  user: ValidatedUserType;
 }) => {
-  const [ct] = useState<FoodCategoryType[]>(categories);
+  // const [ct] = useState<FoodCategoryType[]>(categoryResponse.categories);
   //ct is categories
   const value = useMemo(
-    () => ({ categories: ct, message: message }),
-    [ct, message]
+    () => ({ categoryResponse, user }),
+    [categoryResponse, user]
   );
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

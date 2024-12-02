@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useCheckFormInputs } from "@/lib/customHooks";
 import { toast } from "sonner";
+import { login } from "@/lib/actions";
 export function Login({
   children,
 }: Readonly<{
@@ -34,6 +35,7 @@ export function Login({
       const expiresAt = new Date(exp * 1000).toUTCString();
       document.cookie = `token=${token};expires=${expiresAt};Samesite=Lax;Secure;`;
       toast("You have successfully logged in. can you please refresh");
+      login();
     } catch (error) {
       throw new Error(`${error}`);
     }

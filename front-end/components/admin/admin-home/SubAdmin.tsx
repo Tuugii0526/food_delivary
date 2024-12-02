@@ -5,9 +5,9 @@ import { FirstColumn } from "./FirstColumn";
 import { SecondColumn } from "./SecondColumn";
 import { useBeAwareContext } from "@/components/context/ContextProvider";
 export const SubAdmin = () => {
-  const { categories } = useBeAwareContext();
+  const { categoryResponse } = useBeAwareContext();
   return (
-    <CategoryContextProvider currentCategory={categories[0]}>
+    <CategoryContextProvider currentCategory={categoryResponse.categories[0]}>
       <FirstColumn />
       <SecondColumn />
     </CategoryContextProvider>

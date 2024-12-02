@@ -4,13 +4,13 @@ import { useBeAwareContext } from "@/components/context/ContextProvider";
 import { AdminCategory } from "./AdminCategory";
 
 export const AdminCategories = () => {
-  const { categories, message } = useBeAwareContext();
+  const { categoryResponse } = useBeAwareContext();
   return (
     <>
-      {message ? (
-        <p className="text-red-600">{message}</p>
-      ) : categories.length ? (
-        categories.map((category) => (
+      {categoryResponse.success ? (
+        <p className="text-red-600">{categoryResponse.message}</p>
+      ) : categoryResponse.categories.length ? (
+        categoryResponse.categories.map((category) => (
           <AdminCategory key={category._id} category={category} />
         ))
       ) : (
