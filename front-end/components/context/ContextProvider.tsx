@@ -29,7 +29,7 @@ export const ContextProvider = ({
   categoryResponse: CategoryResponseType;
   user: ValidatedUserType;
 }) => {
-  const [ct] = useState<FoodCategoryType[]>(categoryResponse.categories);
+  // const [ct] = useState<FoodCategoryType[]>(categoryResponse.categories);
   //ct is categories
   const value = useMemo(
     () => ({ categoryResponse, user }),

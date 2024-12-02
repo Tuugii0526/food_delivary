@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { History, LogOutIcon, Mail, Pencil, Phone, User } from "lucide-react";
+import { History, LogOutIcon, Mail, Pencil, User } from "lucide-react";
 import { UserInfo } from "./UserInfo";
 import { ValidatedUserType } from "@/lib/types";
 // import { deleteToken } from "@/lib/utils";
