@@ -1,5 +1,6 @@
 import {
   Dialog,
+  DialogClose,
   // DialogClose,
   DialogContent,
   // DialogDescription,
@@ -11,6 +12,8 @@ import {
 import { History, LogOutIcon, Mail, Pencil, Phone, User } from "lucide-react";
 import { UserInfo } from "./UserInfo";
 import { ValidatedUserType } from "@/lib/types";
+// import { deleteToken } from "@/lib/utils";
+import { deleteToken } from "@/lib/actions";
 export function UserProfile({
   children,
   user,
@@ -50,12 +53,20 @@ export function UserProfile({
               </div>
               <p>Захиалгын түүх</p>
             </div>
-            <div className="flex items-center gap-2 py-2 px-5 rounded-sm">
-              <div className="p-2 rounded-full bg-white ">
-                <LogOutIcon />
-              </div>
-              <p className="">Гарах</p>
-            </div>
+            <DialogClose asChild>
+              <button
+                type="button"
+                className="flex items-center gap-2 py-2 px-5 rounded-sm"
+                onClick={async () => {
+                  await deleteToken();
+                }}
+              >
+                <div className="p-2 rounded-full bg-white ">
+                  <LogOutIcon />
+                </div>
+                <p className="">Гарах</p>
+              </button>
+            </DialogClose>
           </div>
         </form>
       </DialogContent>

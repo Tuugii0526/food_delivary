@@ -23,3 +23,6 @@ export function isPasswordCorrect(password: string) {
   }
   return true;
 }
+// export function deleteToken() {
+//   document.cookie = "token=;max-age=0";
+// }
