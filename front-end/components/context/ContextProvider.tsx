@@ -2,10 +2,15 @@
 
 import {
   CategoryResponseType,
-  FoodCategoryType,
+  // FoodCategoryType,
   ValidatedUserType,
 } from "@/lib/types";
-import { useContext, createContext, useState, useMemo } from "react";
+import {
+  useContext,
+  createContext,
+  //  useState,
+  useMemo,
+} from "react";
 type ContextType = {
   categoryResponse: CategoryResponseType;
   user: ValidatedUserType;
