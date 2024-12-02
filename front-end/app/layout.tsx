@@ -21,11 +21,10 @@ export default async function RootLayout({
   const token = cookieStore.get("token")?.value;
   const user = await getUser(token);
   const res = await getCategories();
-  const { categories, message } = res;
   return (
     <html lang="en">
       <body>
-        <ContextProvider categories={categories} message={message}>
+        <ContextProvider categoryResponse={res} user={user}>
           {!user.userId || user.role == "USER" ? (
             <>
               <Header />

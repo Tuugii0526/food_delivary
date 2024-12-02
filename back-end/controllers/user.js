@@ -48,7 +48,13 @@ const login = async (req, res) => {
     }
     const exp = Math.floor(Date.now() / 1000) + 30 * 60;
     const token = jwt.sign(
-      { userId: foundUser._id, role: foundUser.role, exp: exp },
+      {
+        userId: foundUser._id,
+        name: foundUser.name,
+        email: foundUser.email,
+        role: foundUser.role,
+        exp: exp,
+      },
       process.env.SESSION_SECRET
     );
     return res.status(200).json({ token, exp });

@@ -20,7 +20,7 @@ export function FoodCreateDialog({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { categories } = useBeAwareContext();
+  const { categoryResponse } = useBeAwareContext();
   const [checked, setChecked] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>("");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -77,8 +77,8 @@ export function FoodCreateDialog({
                 id="foodCategory"
                 className="login-input"
               >
-                {categories.length ? (
-                  categories?.map((category) => (
+                {categoryResponse.categories.length ? (
+                  categoryResponse.categories?.map((category) => (
                     <option key={category._id} value={category._id}>
                       {category.categoryName}
                     </option>

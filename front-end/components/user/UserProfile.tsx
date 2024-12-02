@@ -10,11 +10,14 @@ import {
 } from "@/components/ui/dialog";
 import { History, LogOutIcon, Mail, Pencil, Phone, User } from "lucide-react";
 import { UserInfo } from "./UserInfo";
+import { ValidatedUserType } from "@/lib/types";
 export function UserProfile({
   children,
-}: Readonly<{
+  user,
+}: {
   children: React.ReactNode;
-}>) {
+  user: ValidatedUserType;
+}) {
   return (
     <Dialog>
       <DialogTrigger className="user-nav" asChild>
@@ -28,23 +31,18 @@ export function UserProfile({
                 <Pencil />
               </div>
             </div>
-            <DialogTitle>Хүрэлсүх</DialogTitle>
+            <DialogTitle>{user.name}</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col px-5 pt-4 pb-0 gap-4">
             <UserInfo
               icon={<User />}
               description="Таны нэр"
-              property="Хүрэлсүх"
-            />
-            <UserInfo
-              icon={<Phone />}
-              description="Утасны дугаар"
-              property="99110001"
+              property={user.name}
             />
             <UserInfo
               icon={<Mail />}
               description="Имэйл хаяг"
-              property="khurelsukh1234@gmail.com"
+              property={user.email}
             />
             <div className="flex items-center gap-2 py-2 px-5 rounded-sm">
               <div className="p-2 rounded-full bg-white ">

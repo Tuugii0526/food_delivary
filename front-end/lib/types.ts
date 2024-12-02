@@ -43,7 +43,7 @@ export type OrderProcessType = {
 export type UserInfoType = {
   icon: JSX.Element;
   description: string;
-  property: string;
+  property: string | undefined;
 };
 export type CountPropsFunctionsType = [number, () => void, () => void];
 export type User = {
@@ -78,4 +78,15 @@ export type SignupState = {
     [key: string]: string[];
   };
   messages: string;
+};
+export type ValidatedUserType = {
+  userId: string;
+  name?: string | undefined;
+  email?: string | undefined;
+  role?: "ADMIN" | "USER" | undefined;
+};
+export type CategoryResponseType = {
+  success: boolean;
+  message: string;
+  categories: FoodCategoryType[];
 };
