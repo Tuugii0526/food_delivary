@@ -5,7 +5,9 @@ import { discountPriceCalculator } from "@/lib/utils";
 import React, { useContext, createContext, useReducer, Dispatch } from "react";
 const CartContext = createContext<CountTypeForCart[] | undefined>(undefined);
 const CartDispatchContext = createContext<Dispatch<CartDispatchActionType>>(
-  (action: CartDispatchActionType): void => {}
+  (action: CartDispatchActionType): void => {
+    console.log(action);
+  }
 );
 export const CartContextProvider = ({
   children,

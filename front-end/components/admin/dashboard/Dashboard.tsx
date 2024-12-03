@@ -1,6 +1,6 @@
-import { DashboardHeader } from "./DashboardHeader";
-import { DashboardTable } from "./DashboardTable";
-import { AdminPagination } from "./Pagination";
+// import { DashboardHeader } from "./DashboardHeader";
+// import { DashboardTable } from "./DashboardTable";
+// import { AdminPagination } from "./Pagination";
 
 export const Dashboard = () => {
   return (

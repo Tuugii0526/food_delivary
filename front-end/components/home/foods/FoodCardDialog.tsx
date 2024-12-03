@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { CartDispatchActionType, Food } from "@/lib/types";
+import { Food } from "@/lib/types";
 import { poppins } from "@/app/fonts/fonts";
 import { MinusPlus } from "./food-card-dialog/MinusPlus";
 import Image from "next/image";

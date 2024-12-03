@@ -9,10 +9,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useCart } from "@/components/context/CartContext";
+// import { useCart } from "@/components/context/CartContext";
 import { ShoppingBagFoodCard } from "./ShoppingBagFoodCard";
 export const ShoppingBagDialog = () => {
-  const countFoods = useCart();
+  // const countFoods = useCart();
   return (
     <Sheet>
       <SheetTrigger className="user-nav">
