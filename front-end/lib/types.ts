@@ -25,7 +25,7 @@ export type Order = {
   _id: string;
   userId: string;
   orderNumber: number;
-  foods: string[];
+  counts: string[];
   totalPrice: number;
   process: {
     isPaid: "PAID" | "NOT_PAID";
@@ -36,6 +36,23 @@ export type Order = {
   khoroo: string;
   apartment: string;
 };
+export type CountType = {
+  foodId: string;
+  howMany: number;
+  howMuch: number;
+};
+export type CountTypeForCart = {
+  foodId: string;
+  howMany: number;
+  howMuch: number;
+  food: Food;
+};
+export type CartDispatchActionType =
+  | { type: "INSERTED"; insertedFoodCount: CountTypeForCart }
+  | { type: "PLUSED"; foodId: string }
+  | { type: "MINUSED"; foodId: string }
+  | { type: "DELETED"; foodId: string };
+
 export type OrderProcessType = {
   isPaid: string;
   deliveryStatus: string;

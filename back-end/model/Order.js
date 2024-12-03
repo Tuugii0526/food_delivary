@@ -9,8 +9,8 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  foods: {
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Food" }],
+  foodCounts: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Count" }],
     required: true,
   },
   totalPrice: {

@@ -3,14 +3,13 @@ import { Food } from "@/lib/types";
 import Image from "next/image";
 import { DiscountPercent } from "./one-type-foods/DiscountPercent";
 import { FoodCardDialog } from "./FoodCardDialog";
+import { discountPriceCalculator } from "@/lib/utils";
 
 export const FoodCard = ({ food }: { food: Food }) => {
   let finalPrice;
   const prices: JSX.Element[] = [];
   if (food.discountPercent) {
-    const discountPrice = Math.floor(
-      ((100 - food.discountPercent) / 100) * food.initialPrice
-    );
+    const discountPrice = discountPriceCalculator(food);
     finalPrice = discountPrice;
     prices.push(
       <p key={1} className={`${poppins.className} text-[#18BA51]`}>

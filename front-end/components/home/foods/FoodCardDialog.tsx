@@ -3,6 +3,7 @@
 import { useCount } from "@/lib/customHooks";
 import {
   Dialog,
+  DialogClose,
   // DialogClose,
   DialogContent,
   // DialogDescription,
@@ -11,10 +12,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Food } from "@/lib/types";
+import { CartDispatchActionType, Food } from "@/lib/types";
 import { poppins } from "@/app/fonts/fonts";
 import { MinusPlus } from "./food-card-dialog/MinusPlus";
 import Image from "next/image";
+import { useCartDispatch } from "@/components/context/CartContext";
+import { discountPriceCalculator } from "@/lib/utils";
 export function FoodCardDialog({
   children,
   food,
@@ -25,7 +28,8 @@ export function FoodCardDialog({
   finalPrice: number;
 }) {
   const countPropsFunctions = useCount();
-  // const [count] = countPropsFunctions;
+  const [count] = countPropsFunctions;
+  const dispatch = useCartDispatch();
   return (
     <Dialog>
       <DialogTrigger className="user-nav" asChild>
@@ -59,7 +63,24 @@ export function FoodCardDialog({
             <p className={` ${poppins.className}`}>Тоо</p>
             <MinusPlus countPropsFunctions={countPropsFunctions} />
           </div>
-          <button className="w-full food-dialog-button  ">Сагслах</button>
+          <DialogClose asChild>
+            <button
+              className="w-full food-dialog-button  "
+              onClick={() => {
+                dispatch({
+                  type: "INSERTED",
+                  insertedFoodCount: {
+                    foodId: food._id,
+                    howMany: count,
+                    howMuch: discountPriceCalculator(food) * count,
+                    food: food,
+                  },
+                });
+              }}
+            >
+              Сагслах
+            </button>
+          </DialogClose>
         </div>
       </DialogContent>
     </Dialog>

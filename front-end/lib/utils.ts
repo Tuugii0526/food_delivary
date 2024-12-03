@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { passwordChecks } from "./data-all/checks";
+import { Food } from "./types";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -23,6 +24,9 @@ export function isPasswordCorrect(password: string) {
   }
   return true;
 }
+export const discountPriceCalculator = (food: Food): number => {
+  return Math.floor(((100 - food.discountPercent) / 100) * food.initialPrice);
+};
 // export function deleteToken() {
 //   document.cookie = "token=;max-age=0";
 // }

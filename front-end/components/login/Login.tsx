@@ -34,7 +34,7 @@ export function Login({
       const { token, exp } = await res.json();
       const expiresAt = new Date(exp * 1000).toUTCString();
       document.cookie = `token=${token};expires=${expiresAt};Samesite=Lax;Secure;`;
-      toast("You have successfully logged in. can you please refresh");
+      toast("You have successfully logged in.");
       login();
     } catch (error) {
       throw new Error(`${error}`);

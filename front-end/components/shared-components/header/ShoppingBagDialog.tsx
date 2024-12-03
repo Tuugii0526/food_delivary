@@ -1,3 +1,5 @@
+"use client";
+
 import { ShoppingBag } from "lucide-react";
 import {
   Sheet,
@@ -7,7 +9,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useCart } from "@/components/context/CartContext";
+import { ShoppingBagFoodCard } from "./ShoppingBagFoodCard";
 export const ShoppingBagDialog = () => {
+  const countFoods = useCart();
   return (
     <Sheet>
       <SheetTrigger className="user-nav">
@@ -21,6 +26,7 @@ export const ShoppingBagDialog = () => {
           <SheetTitle className="text-center">Таны сагс</SheetTitle>
           <SheetDescription></SheetDescription>
         </SheetHeader>
+        <ShoppingBagFoodCard />
       </SheetContent>
     </Sheet>
   );
