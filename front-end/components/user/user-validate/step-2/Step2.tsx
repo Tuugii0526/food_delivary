@@ -19,7 +19,7 @@ export const Step2 = ({
     if (!cart?.length) {
       router.push("/");
     }
-  }, [cart]);
+  }, [cart, router]);
   return (
     <div className="flex w-[49%] h-full flex-col gap-4  rounded-2xl shadow-xl">
       <Step2Check />

@@ -12,7 +12,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@radix-ui/react-dropdown-menu";
-import { useCallback, useTransition } from "react";
+import { useTransition } from "react";
 import { toast } from "sonner";
 export const AdminOrderEdit = ({
   children,
@@ -85,7 +85,7 @@ export const AdminOrderEdit = ({
           <DropdownMenuRadioGroup
             value={delivery}
             onValueChange={(value) => {
-              startPayTransition(async () => {
+              startDeliveryTransition(async () => {
                 const res = await fetch(
                   `${process.env.NEXT_PUBLIC_DATABASE_URL}/order?id=${_id}&delivery=${value}`,
                   {
@@ -118,7 +118,7 @@ export const AdminOrderEdit = ({
                   d.value == delivery ? "bg-green-300" : ""
                 }`}
               >
-                {d.name}
+                {isDeliveryPending ? "Loading" : d.name}
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>

@@ -1,5 +1,5 @@
 import { poppins } from "@/app/fonts/fonts";
-import { CountTypeForCart, Food } from "@/lib/types";
+import { CountTypeForCart } from "@/lib/types";
 import { discountPriceCalculator } from "@/lib/utils";
 import Image from "next/image";
 

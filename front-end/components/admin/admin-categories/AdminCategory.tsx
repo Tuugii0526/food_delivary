@@ -6,7 +6,6 @@ import { AdminCategoryEdit } from "./AdminCategoryEdit";
 import clsx from "clsx";
 import { ChangeEvent, useState, useTransition } from "react";
 import { useAdminContext } from "@/components/context/AdminContext";
-import { Label } from "@radix-ui/react-dropdown-menu";
 export const AdminCategory = ({ category }: { category: FoodCategoryType }) => {
   const { curt, setCurt } = useAdminContext();
   const [_, startTransition] = useTransition();

@@ -39,17 +39,20 @@ export const AdminContextProvider = ({
   );
   const updateCts: Dispatch<SetStateAction<FoodCategoryType[]>> = setCts;
   const updateCurt: Dispatch<SetStateAction<FoodCategoryType>> = setCurt;
-  const editCategoryName = useCallback((id: string, newName: string) => {
-    updateCts((cts) => {
-      return cts.map((ct) => {
-        if (ct._id == id) {
-          return { ...ct, categoryName: newName };
-        }
-        return ct;
+  const editCategoryName = useCallback(
+    (id: string, newName: string) => {
+      updateCts((cts) => {
+        return cts.map((ct) => {
+          if (ct._id == id) {
+            return { ...ct, categoryName: newName };
+          }
+          return ct;
+        });
       });
-    });
-    updateCurt((curt) => ({ ...curt, categoryName: newName }));
-  }, []);
+      updateCurt((curt) => ({ ...curt, categoryName: newName }));
+    },
+    [updateCts, updateCurt]
+  );
   const value = useMemo(() => {
     return { curt, setCurt, cts, editCategoryName };
   }, [cts, curt, setCurt, editCategoryName]);
