@@ -25,6 +25,12 @@ export default async function Page() {
         </div>
       );
     }
-  } catch (error) {}
+  } catch (error) {
+    return (
+      <div className="w-full container">
+        <p>{`${error}`}</p>
+      </div>
+    );
+  }
   return <SubOrderHistory orders={data} />;
 }

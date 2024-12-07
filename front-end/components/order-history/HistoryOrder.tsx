@@ -1,7 +1,6 @@
 import { Order } from "@/lib/types";
 import { StepWaitingState } from "../user/user-validate/general-step/StepWaitingState";
 import { StepSuccessState } from "../user/user-validate/general-step/StepSuccessState";
-import { poppins } from "@/app/fonts/fonts";
 
 export const HistoryOrder = ({
   order,
