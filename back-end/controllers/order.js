@@ -1,12 +1,28 @@
 import { Order, Counter, Foodcounter } from "../model/index.js";
+
 const getOrders = async (req, res) => {
-  try {
-    const orders = await Order.find().populate("foodCounts");
-    return res.status(200).json({ orders });
-  } catch (error) {
-    return res.status(500).json({
-      message: `${error}`,
-    });
+  const { isUser } = req.query;
+  const { userId } = req.user;
+  if (isUser) {
+    try {
+      const orders = await Order.find({ userId: userId }).populate(
+        "foodCounts"
+      );
+      return res.status(200).json({ orders });
+    } catch (error) {
+      return res.status(500).json({
+        error: `${error}`,
+      });
+    }
+  } else {
+    try {
+      const orders = await Order.find().populate("foodCounts");
+      return res.status(200).json({ orders });
+    } catch (error) {
+      return res.status(500).json({
+        message: `${error}`,
+      });
+    }
   }
 };
 const createOrder = async (req, res) => {
@@ -53,7 +69,6 @@ const createOrder = async (req, res) => {
     });
     return res.status(200).json({ success: true, data: savedOrder });
   } catch (error) {
-    console.log("error:", error);
     return res.status(500).json({
       success: false,
       message: `${error}`,
@@ -62,10 +77,6 @@ const createOrder = async (req, res) => {
 };
 const updateProcess = async (req, res) => {
   const { pay, delivery, id } = req.query;
-  console.log("pay is :", pay);
-  console.log("id is:", id);
-  console.log("Iam working");
-  console.log("query is:", req.query);
   if (pay) {
     try {
       const updated = await Order.findByIdAndUpdate(
@@ -84,7 +95,7 @@ const updateProcess = async (req, res) => {
   }
   if (delivery) {
     try {
-      const updated = await Counter.findByIdAndUpdate(
+      const updated = await Order.findByIdAndUpdate(
         id,
         {
           deliveryStatus: delivery,

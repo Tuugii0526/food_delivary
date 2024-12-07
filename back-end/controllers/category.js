@@ -34,7 +34,6 @@ const deleteCategory = async (req, res) => {
   try {
     const { id } = req.query;
     const deletedCategory = await Category.findByIdAndDelete(id);
-    console.log(deletedCategory);
     if (deletedCategory) {
       return res.status(200).json({ deletedCategory });
     } else {
@@ -48,7 +47,6 @@ const editCategory = async (req, res) => {
   try {
     const { id } = req.query;
     const { categoryName } = req.body;
-    console.log("category name:", categoryName);
     const updatedCategory = await Category.findByIdAndUpdate(
       id,
       {

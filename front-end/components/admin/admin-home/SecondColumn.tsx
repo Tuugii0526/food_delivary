@@ -6,7 +6,7 @@ import { Food } from "@/lib/types";
 import { useAdminContext } from "@/components/context/AdminContext";
 
 export const SecondColumn = () => {
-  const { curt } = useAdminContext();
+  const { curt, foodAddSensor } = useAdminContext();
   const [categoryFoods, setCategoryFoods] = useState<Food[]>([]);
   const currentCategoryId = curt?._id;
   useEffect(() => {
@@ -18,7 +18,7 @@ export const SecondColumn = () => {
       setCategoryFoods(data.data);
     }
     fetchCategoryFoods();
-  }, [currentCategoryId]);
+  }, [currentCategoryId, foodAddSensor]);
   return (
     <div className="flex  flex-col p-6 gap-8 h-fit max-h-[1228px] grow ">
       <div className="flex justify-between">

@@ -39,6 +39,11 @@ export const AdminCategoryEdit = ({
           className="flex  py-2 px-4 gap-4"
           onClick={async () => {
             if (isEditing) {
+              if (category.categoryName == categoryName) {
+                toast("There is no change");
+                setIsEditing(false);
+                return;
+              }
               const res = await fetch(
                 `${process.env.NEXT_PUBLIC_DATABASE_URL}/category?id=${category._id}`,
                 {

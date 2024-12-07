@@ -42,6 +42,7 @@ const foodCountSchema = new mongoose.Schema({
   },
   foodId: {
     type: String,
+    required: true,
   },
 });
 const Foodcounter = mongoose.model("Foodcounter", foodCountSchema);

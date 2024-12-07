@@ -8,7 +8,6 @@ export const AdminCategories = () => {
   if (!cts.length) {
     return <p>No data</p>;
   }
-  console.log("categories length:", cts.length);
   return (
     <>
       {cts.map((category) => (
