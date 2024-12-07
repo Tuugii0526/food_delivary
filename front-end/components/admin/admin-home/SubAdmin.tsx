@@ -1,15 +1,16 @@
-"use client";
-
-import { CategoryContextProvider } from "@/components/context/CategoryContextProvider";
+import { AdminContextProvider } from "@/components/context/AdminContext";
 import { FirstColumn } from "./FirstColumn";
 import { SecondColumn } from "./SecondColumn";
-import { useBeAwareContext } from "@/components/context/ContextProvider";
-export const SubAdmin = () => {
-  const { categoryResponse } = useBeAwareContext();
+import { FoodCategoryType } from "@/lib/types";
+export const SubAdmin = ({
+  categories,
+}: {
+  categories: FoodCategoryType[];
+}) => {
   return (
-    <CategoryContextProvider currentCategory={categoryResponse.categories[0]}>
+    <AdminContextProvider categories={categories}>
       <FirstColumn />
       <SecondColumn />
-    </CategoryContextProvider>
+    </AdminContextProvider>
   );
 };

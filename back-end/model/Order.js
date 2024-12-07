@@ -5,35 +5,37 @@ const orderSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  userName: {
+    type: String,
+    required: true,
+  },
   orderNumber: {
     type: Number,
     required: true,
   },
   foodCounts: {
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Count" }],
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Foodcounter" }],
     required: true,
   },
   totalPrice: {
     type: Number,
     required: true,
   },
-  process: {
-    isPaid: {
-      type: String,
-      enum: {
-        values: ["PAID", "NOT_PAID"],
-        message: "invalid pay status",
-      },
-      default: "NOT_PAID",
+  isPaid: {
+    type: String,
+    enum: {
+      values: ["PAID", "NOT_PAID"],
+      message: "invalid pay status",
     },
-    deliveryStatus: {
-      type: String,
-      enum: {
-        values: ["PROGRESS", "DELIVERED", "WAITING", "ACTIVE"],
-        message: "invalid delivery status",
-      },
-      default: "ACTIVE",
+    default: "NOT_PAID",
+  },
+  deliveryStatus: {
+    type: String,
+    enum: {
+      values: ["PROGRESS", "DELIVERED", "WAITING", "ACTIVE"],
+      message: "invalid delivery status",
     },
+    default: "ACTIVE",
   },
   createdAt: {
     type: String,
@@ -49,6 +51,24 @@ const orderSchema = new mongoose.Schema({
   },
   apartment: {
     type: String,
+    required: true,
+  },
+  addressDetail: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+  },
+  byCash: {
+    type: String,
+    enum: ["off", "on"],
+    required: true,
+  },
+  byCard: {
+    type: String,
+    enum: ["off", "on"],
     required: true,
   },
 });

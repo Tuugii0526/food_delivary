@@ -12,6 +12,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  phoneNumber: {
+    type: String,
+    required: false,
+  }, //in sign up , this will not be gotten, but after the user logged in, user will update it
+  avatar: {
+    type: String,
+    required: false,
+  },
+  //in sign up , this will not be gotten, but after the user logged in, user will update it
   role: {
     type: String,
     enum: {

@@ -13,24 +13,33 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import clsx from "clsx";
-import { useBeAwareContext } from "@/components/context/ContextProvider";
 import Image from "next/image";
+import { refresh } from "@/lib/actions";
+import { toast } from "sonner";
+import { useAdminContext } from "@/components/context/AdminContext";
 export function FoodCreateDialog({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { categoryResponse } = useBeAwareContext();
+  const { cts } = useAdminContext();
   const [checked, setChecked] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>("");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/food`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/food`, {
         method: "post",
         body: formData,
       });
+      if (res.ok) {
+        toast("You have successfull created a food");
+        await refresh();
+      } else {
+        const data = await res.json();
+        toast(`${data.error}`);
+      }
     } catch (error) {
       throw new Error(`${error}`);
     }
@@ -77,14 +86,14 @@ export function FoodCreateDialog({
                 id="foodCategory"
                 className="login-input"
               >
-                {categoryResponse.categories.length ? (
-                  categoryResponse.categories?.map((category) => (
+                {cts.length ? (
+                  cts.map((category) => (
                     <option key={category._id} value={category._id}>
                       {category.categoryName}
                     </option>
                   ))
                 ) : (
-                  <option>No data</option>
+                  <option>No category</option>
                 )}
               </select>
             </label>

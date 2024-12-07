@@ -1,6 +1,5 @@
 "use client";
 
-// import { useActionState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -11,6 +10,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { refresh } from "@/lib/actions";
+import { getToken } from "@/lib/utils";
+import { toast } from "sonner";
 export function AdminAddCategory({
   children,
 }: Readonly<{
@@ -20,12 +22,26 @@ export function AdminAddCategory({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/category`, {
-        method: "post",
-        body: formData,
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_DATABASE_URL}/category`,
+        {
+          method: "post",
+          headers: {
+            Authorization: `${getToken()}`,
+          },
+          body: formData,
+        }
+      );
+      if (res.ok) {
+        toast("You have successfully added category");
+        await refresh();
+        console.log("after refresh");
+      } else {
+        const { error } = await res.json();
+        toast(`Failed to create category.Error in server: ${error}`);
+      }
     } catch (error) {
-      console.log("error:", error);
+      toast(`Failed to create category.Error in implementing: ${error}`);
     }
   };
   return (

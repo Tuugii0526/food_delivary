@@ -36,7 +36,6 @@ export const ContextProvider = ({
 }) => {
   // const [ct] = useState<FoodCategoryType[]>(categoryResponse.categories);
   //ct is categories
-  console.log("context provider is workings");
   const value = useMemo(
     () => ({ categoryResponse, user }),
     [categoryResponse, user]

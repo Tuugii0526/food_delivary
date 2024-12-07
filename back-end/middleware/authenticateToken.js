@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 export function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
-  if (authHeader == "undefined") {
+  if (!authHeader || authHeader == "undefined") {
     return res.status(401).json({
       userId: "",
     });
@@ -12,6 +12,6 @@ export function authenticateToken(req, res, next) {
     req.user = decoded;
     next();
   } catch (error) {
-    res.status(401).json({ error: `${error}` });
+    res.status(500).json({ error: error });
   }
 }

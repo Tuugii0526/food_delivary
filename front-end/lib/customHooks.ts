@@ -1,11 +1,14 @@
-import { ChangeEvent, useState } from "react";
+"use client";
+import { ChangeEvent, useCallback, useState } from "react";
 import { CountPropsFunctionsType } from "./types";
 export const useCount = () => {
   const [count, setCount] = useState<number>(1);
-  function addCount(): void {
-    setCount((count) => count + 1);
-  }
-  function minusCount(): void {
+  const addCount = useCallback(() => {
+    {
+      setCount((count) => count + 1);
+    }
+  }, []);
+  const minusCount = useCallback(() => {
     setCount((count) => {
       if (count - 1 < 1) {
         return 1;
@@ -13,15 +16,16 @@ export const useCount = () => {
         return count - 1;
       }
     });
-  }
+  }, []);
   const returnValue: CountPropsFunctionsType = [count, addCount, minusCount];
   return returnValue;
 };
 export const useInput = (initialValue: string) => {
   const [inputValue, setInputValue] = useState<string>(initialValue);
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-  }
+  }, []);
+
   const inputProps = {
     value: inputValue,
     onChange: handleChange,
@@ -30,7 +34,7 @@ export const useInput = (initialValue: string) => {
 };
 export const useCheckFormInputs = () => {
   const [correct, setCorrect] = useState(false);
-  const onChange = (e: ChangeEvent<HTMLFormElement>) => {
+  const onChange = useCallback((e: ChangeEvent<HTMLFormElement>) => {
     let letterSum = 0;
     const formData = new FormData(e.currentTarget);
     for (const data of formData.values()) {
@@ -41,6 +45,7 @@ export const useCheckFormInputs = () => {
     } else {
       setCorrect(false);
     }
-  };
+  }, []);
+
   return { correct, onChange };
 };

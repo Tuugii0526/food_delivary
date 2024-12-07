@@ -30,7 +30,6 @@ export const SignUp = () => {
         toast(`Failed to create an account .${data.message}`);
       }
     } catch (error) {
-      console.log("Iam workings the catchtry");
       throw new Error(`${error}`);
     }
   };
@@ -68,7 +67,6 @@ export const SignUp = () => {
           <p>Нууц үг</p>
           <PasswordCheck password={password} setPassword={setPassword} />
         </label>
-
         <label htmlFor="rePassword" className="flex flex-col gap-1 ">
           <p>Нууц үг давтах</p>
           <input

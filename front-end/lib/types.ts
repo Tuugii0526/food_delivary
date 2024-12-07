@@ -15,6 +15,7 @@ export type Food = {
   _id: string;
   foodName: string;
   ingredient: string[];
+  foodNumber: number;
   image: string;
   categoryId: string;
   categoryName: string; //will deprecated soon
@@ -24,17 +25,19 @@ export type Food = {
 export type Order = {
   _id: string;
   userId: string;
+  userName: string;
   orderNumber: number;
-  counts: string[];
+  foodCounts: CountTypeForCart[];
   totalPrice: number;
-  process: {
-    isPaid: "PAID" | "NOT_PAID";
-    deliveryStatus: "PROGRESS" | "DELIVERED" | "WAITING" | "ACTIVE";
-  };
+  isPaid: "PAID" | "NOT_PAID";
+  deliveryStatus: "PROGRESS" | "DELIVERED" | "WAITING" | "ACTIVE";
   createdAt: Date;
   district: string;
   khoroo: string;
   apartment: string;
+  addressDetail: string;
+  phoneNumber: string;
+  paymentType: "CASH" | "CARD";
 };
 export type CountType = {
   foodId: string;
@@ -48,10 +51,12 @@ export type CountTypeForCart = {
   food: Food;
 };
 export type CartDispatchActionType =
+  | { type: "LOCALSTORAGE"; localstorage: CountTypeForCart[] }
   | { type: "INSERTED"; insertedFoodCount: CountTypeForCart }
   | { type: "PLUSED"; foodId: string }
   | { type: "MINUSED"; foodId: string }
-  | { type: "DELETED"; foodId: string };
+  | { type: "DELETED"; foodId: string }
+  | { type: "DELETE_ALL" };
 
 export type OrderProcessType = {
   isPaid: string;
@@ -63,6 +68,8 @@ export type UserInfoType = {
   property: string | undefined;
 };
 export type CountPropsFunctionsType = [number, () => void, () => void];
+
+//user type might need fixing ,because of the phoneNumber
 export type User = {
   _id: string;
   name: string;

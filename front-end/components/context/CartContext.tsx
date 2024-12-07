@@ -2,7 +2,13 @@
 
 import { CartDispatchActionType, CountTypeForCart } from "@/lib/types";
 import { discountPriceCalculator } from "@/lib/utils";
-import React, { useContext, createContext, useReducer, Dispatch } from "react";
+import React, {
+  useContext,
+  createContext,
+  useReducer,
+  Dispatch,
+  useEffect,
+} from "react";
 const CartContext = createContext<CountTypeForCart[] | undefined>(undefined);
 const CartDispatchContext = createContext<Dispatch<CartDispatchActionType>>(
   (action: CartDispatchActionType): void => {
@@ -17,7 +23,16 @@ export const CartContextProvider = ({
   const [foodCounts, dispatch] = useReducer<
     React.Reducer<CountTypeForCart[], CartDispatchActionType>
   >(cartReducer, []);
-  console.log("food counts:", foodCounts);
+  useEffect(() => {
+    let localstorage: CountTypeForCart[];
+    const cartOnLocal = localStorage.getItem("cart");
+    if (cartOnLocal) {
+      localstorage = JSON.parse(cartOnLocal);
+    } else {
+      localstorage = [];
+    }
+    dispatch({ type: "LOCALSTORAGE", localstorage: localstorage });
+  }, []);
   return (
     <CartContext.Provider value={foodCounts}>
       <CartDispatchContext.Provider value={dispatch}>
@@ -31,15 +46,22 @@ function cartReducer(
   action: CartDispatchActionType
 ): CountTypeForCart[] {
   switch (action.type) {
+    case "LOCALSTORAGE": {
+      return [...foodCounts, ...action.localstorage];
+    }
     case "INSERTED": {
-      return [...foodCounts, action.insertedFoodCount];
+      const newState = [...foodCounts, action.insertedFoodCount];
+      localStorage.setItem("cart", JSON.stringify(newState));
+      return newState;
     }
     case "DELETED": {
-      return foodCounts.filter((fC) => fC.foodId !== action.foodId);
+      const newState = foodCounts.filter((fC) => fC.food._id !== action.foodId);
+      localStorage.setItem("cart", JSON.stringify(newState));
+      return newState;
     }
     case "MINUSED": {
-      return foodCounts.map((fC) => {
-        if (fC.foodId == action.foodId) {
+      const newState = foodCounts.map((fC) => {
+        if (fC.food._id == action.foodId) {
           return {
             ...fC,
             howMany: fC.howMany - 1,
@@ -48,10 +70,12 @@ function cartReducer(
         }
         return fC;
       });
+      localStorage.setItem("cart", JSON.stringify(newState));
+      return newState;
     }
     case "PLUSED": {
-      return foodCounts.map((fC) => {
-        if (fC.foodId == action.foodId) {
+      const newState = foodCounts.map((fC) => {
+        if (fC.food._id == action.foodId) {
           return {
             ...fC,
             howMany: fC.howMany + 1,
@@ -60,6 +84,12 @@ function cartReducer(
         }
         return fC;
       });
+      localStorage.setItem("cart", JSON.stringify(newState));
+      return newState;
+    }
+    case "DELETE_ALL": {
+      const newState: CountTypeForCart[] = [];
+      localStorage.setItem("cart", JSON.stringify(newState));
     }
     default: {
       return [];

@@ -28,11 +28,11 @@ export default async function RootLayout({
         <ContextProvider categoryResponse={res} user={user}>
           <CartContextProvider>
             {!user.userId || user.role == "USER" ? (
-              <>
+              <div className="relative">
                 <Header />
                 {children}
                 <Footer />
-              </>
+              </div>
             ) : (
               admin
             )}
