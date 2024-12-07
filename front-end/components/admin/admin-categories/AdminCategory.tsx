@@ -8,7 +8,7 @@ import { ChangeEvent, useState, useTransition } from "react";
 import { useAdminContext } from "@/components/context/AdminContext";
 export const AdminCategory = ({ category }: { category: FoodCategoryType }) => {
   const { curt, setCurt } = useAdminContext();
-  const [_, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [categoryName, setCategoryName] = useState(category.categoryName);
   return (
