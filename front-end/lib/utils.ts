@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { passwordChecks } from "./data-all/checks";
+import { CountTypeForCart, Food } from "./types";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -23,6 +24,52 @@ export function isPasswordCorrect(password: string) {
   }
   return true;
 }
-// export function deleteToken() {
-//   document.cookie = "token=;max-age=0";
+export const discountPriceCalculator = (food: Food): number => {
+  return Math.floor(((100 - food.discountPercent) / 100) * food.initialPrice);
+};
+
+export const cartTotalPriceCalculator = (
+  cart: CountTypeForCart[] | undefined
+) => {
+  if (!cart) {
+    return 0;
+  } else {
+    return cart.reduce((acc, element) => acc + element.howMuch, 0);
+  }
+};
+
+export const getToken = () => {
+  if (typeof window !== "undefined") {
+    const cookies = document.cookie;
+    if (!cookies) {
+      return "";
+    } else {
+      return cookies
+        ?.split(";")
+        .filter((cookie) => cookie.startsWith("token"))[0]
+        .split("=")[1];
+    }
+  } else {
+    return "";
+  }
+};
+export const moneyFormatter = (() => {
+  const formatter = new Intl.NumberFormat();
+  return (number: number) => {
+    return formatter.format(number);
+  };
+})();
+//------------------------------For temporary , filter will be used , but in the future , bs will be utilized-----------------------------------------------------
+// export function searchCountFood(
+//   food: Food,
+//   countFoods: CountTypeForCart[]
+// ) {
+//   let min = 0;
+//   let up = countFoods.length - 1;
+//   while (min <= up) {
+//     const pivot = min + Math.floor((up - min) / 2);
+//     if (countFoods[pivot].foodId === foodId) {
+//       return true;
+//     }
+//   }
 // }

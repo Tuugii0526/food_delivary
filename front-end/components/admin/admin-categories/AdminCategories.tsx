@@ -1,21 +1,19 @@
 "use client";
 
-import { useBeAwareContext } from "@/components/context/ContextProvider";
+import { useAdminContext } from "@/components/context/AdminContext";
 import { AdminCategory } from "./AdminCategory";
 
 export const AdminCategories = () => {
-  const { categoryResponse } = useBeAwareContext();
+  const { cts } = useAdminContext();
+  if (!cts.length) {
+    return <p>No data</p>;
+  }
+  console.log("categories length:", cts.length);
   return (
     <>
-      {categoryResponse.success ? (
-        <p className="text-red-600">{categoryResponse.message}</p>
-      ) : categoryResponse.categories.length ? (
-        categoryResponse.categories.map((category) => (
-          <AdminCategory key={category._id} category={category} />
-        ))
-      ) : (
-        <p>No data</p>
-      )}
+      {cts.map((category) => (
+        <AdminCategory key={category._id} category={category} />
+      ))}
     </>
   );
 };

@@ -1,7 +1,6 @@
 "use client";
 
 import { CountPropsFunctionsType } from "@/lib/types";
-
 export const MinusPlus = ({
   countPropsFunctions,
 }: {

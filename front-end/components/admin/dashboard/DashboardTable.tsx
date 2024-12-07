@@ -1,23 +1,7 @@
-import { orders, foods, users } from "@/lib/data-all/mockData";
-import { DashboardTableRow } from "./DashboardTableRow";
+import { Order } from "@/lib/types";
+import { OneOrder } from "./OneOrder";
 
-export const DashboardTable = () => {
-  const results: JSX.Element[] = [];
-
-  orders.forEach((order) => {
-    const user = users.find((user) => user._id === order.userId);
-    order.foods.forEach((foodId) => {
-      const food = foods.find((food) => food._id === foodId);
-      results.push(
-        <DashboardTableRow
-          key={`${order._id}${user?._id}${food?._id}`}
-          order={order}
-          food={food}
-          user={user}
-        />
-      );
-    });
-  });
+export const DashboardTable = async ({ data }: { data: Order[] }) => {
   return (
     <div className="w-full h-fit ">
       <table className="table-auto w-full ">
@@ -25,13 +9,20 @@ export const DashboardTable = () => {
           <tr>
             <th className="dashboard-table-headers">Order name</th>
             <th className="dashboard-table-headers">Buyer info</th>
+
+            <th className="dashboard-table-headers">Per price</th>
+            <th className="dashboard-table-headers">Quantity</th>
             <th className="dashboard-table-headers">Payment</th>
             <th className="dashboard-table-headers">Address</th>
             <th className="dashboard-table-headers">Delivery state</th>
             <th className="dashboard-table-headers"></th>
           </tr>
         </thead>
-        <tbody>{results}</tbody>
+        <tbody>
+          {data.map((d) => (
+            <OneOrder key={d._id} order={d} />
+          ))}
+        </tbody>
       </table>
     </div>
   );

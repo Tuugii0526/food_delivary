@@ -1,13 +1,14 @@
+"use client";
 import { AdminFoodCard } from "../admin-foods/AdminFoodCard";
 import { FoodCreateDialog } from "../dialog/FoodCreateDialog";
 import { useEffect, useState } from "react";
-import { useCurrentCategoryId } from "@/components/context/CategoryContextProvider";
 import { Food } from "@/lib/types";
+import { useAdminContext } from "@/components/context/AdminContext";
 
 export const SecondColumn = () => {
-  const { curCat } = useCurrentCategoryId();
+  const { curt } = useAdminContext();
   const [categoryFoods, setCategoryFoods] = useState<Food[]>([]);
-  const currentCategoryId = curCat?._id;
+  const currentCategoryId = curt?._id;
   useEffect(() => {
     async function fetchCategoryFoods() {
       const res = await fetch(
@@ -19,10 +20,10 @@ export const SecondColumn = () => {
     fetchCategoryFoods();
   }, [currentCategoryId]);
   return (
-    <div className="flex  flex-col p-6 gap-8 h-[1228px] grow ">
+    <div className="flex  flex-col p-6 gap-8 h-fit max-h-[1228px] grow ">
       <div className="flex justify-between">
         <p className="font-bold text-[24px]">
-          {curCat?.categoryName || "No category"}
+          {curt?.categoryName || "No category"}
         </p>
         <FoodCreateDialog>
           <button className="py-2 px-4 bg-[#18BA51] rounded-sm text-white">

@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
-import { Food } from "../model/index.js";
+import { Counter, Food } from "../model/index.js";
 import "dotenv/config";
 import { getAllBlogsByCategories } from "../lib/getAllBlogs.js";
 cloudinary.config({
@@ -70,17 +70,23 @@ const createFood = async (req, res, next) => {
         .end(buffer);
     });
     const foodIngredientArray = foodIngredient.split(",");
+    const counter = await Counter.findOneAndUpdate(
+      { name: "food" },
+      { $inc: { number: 1 } },
+      { new: false }
+    );
     await Food.create({
       foodName: foodName,
+      foodNumber: counter.number,
       ingredient: foodIngredientArray,
       image: url,
       categoryId: foodCategory,
       initialPrice: Number(foodPrice),
       discountPercent: Number(sale),
     });
-    return res.redirect(`${process.env.FRONTEND_URL}`);
+    return res.status(200);
   } catch (error) {
-    return res.redirect(`${process.env.FRONTEND_URL}`);
+    return res.status(500).json(error);
   }
 };
 const deleteFood = async (req, res, next) => {

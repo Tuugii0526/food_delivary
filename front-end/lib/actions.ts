@@ -11,11 +11,16 @@ import { cookies } from "next/headers";
 //     revalidatePath("/", "layout");
 //   }
 // });
-
+export async function getTokenOnServer() {
+  return (await cookies()).get("token")?.value;
+}
 export async function deleteToken() {
   (await cookies()).delete("token");
   revalidatePath("/", "layout");
 }
 export async function login() {
   revalidatePath("/", "layout");
+}
+export async function refresh() {
+  revalidatePath("/");
 }

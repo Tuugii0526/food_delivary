@@ -11,6 +11,7 @@ const createUser = async (req, res) => {
         message: "User already exits",
       });
     }
+    //409 is for confilt
     const hashedPassword = await bcrypt.hash(password, 10);
     const createdUser = await User.create({
       name: name,
@@ -36,16 +37,17 @@ const login = async (req, res) => {
       email: email,
     });
     if (!foundUser) {
-      return res.status(401).json({
+      return res.status(404).json({
         message: "You don't have an account",
       });
-    }
+    } //not found error
     const passwordMatch = await bcrypt.compare(password, foundUser.password);
     if (!passwordMatch) {
       return res.status(401).json({
         message: "Your password is incorrect",
       });
     }
+    //unauthorized
     const exp = Math.floor(Date.now() / 1000) + 30 * 60;
     const token = jwt.sign(
       {
@@ -60,7 +62,7 @@ const login = async (req, res) => {
     return res.status(200).json({ token, exp });
   } catch (error) {
     return res.status(500).json({
-      message: `${error}`,
+      error,
     });
   }
 };

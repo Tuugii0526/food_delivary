@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
-
+import Counter from "./Counter.js";
 const foodSchema = new mongoose.Schema({
   foodName: {
     type: String,
     required: true,
+  },
+  foodNumber: {
+    type: Number,
+    unique: true,
   },
   ingredient: {
     type: [String],

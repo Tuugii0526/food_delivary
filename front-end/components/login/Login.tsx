@@ -31,11 +31,16 @@ export function Login({
         method: "post",
         body: formData,
       });
-      const { token, exp } = await res.json();
-      const expiresAt = new Date(exp * 1000).toUTCString();
-      document.cookie = `token=${token};expires=${expiresAt};Samesite=Lax;Secure;`;
-      toast("You have successfully logged in. can you please refresh");
-      login();
+      if (res.ok) {
+        const { token, exp } = await res.json();
+        const expiresAt = new Date(exp * 1000).toUTCString();
+        document.cookie = `token=${token};expires=${expiresAt};Samesite=Lax;Secure;`;
+        toast("You have successfully logged in.");
+        login();
+      } else {
+        const { message } = await res.json();
+        toast(`${message}`);
+      }
     } catch (error) {
       throw new Error(`${error}`);
     }

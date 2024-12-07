@@ -1,11 +1,4 @@
-import {
-  CheckCategoryType,
-  Food,
-  FoodCategoryType,
-  Order,
-  User,
-} from "../types";
-
+import { CheckCategoryType } from "../types";
 export const navs = [
   {
     id: 1,
@@ -92,154 +85,114 @@ export const checkCategoriesData: CheckCategoryType[] = [
     iconName: "MenuSquare",
   },
 ];
-export const foodCategories: FoodCategoryType[] = [
+export const districtSelectOptions = [
   {
-    _id: "1",
-    categoryName: "Хямдралтай",
+    id: 1,
+    name: "Баянзүрх дүүрэг",
+    value: "Баянзүрх дүүрэг",
   },
   {
-    _id: "2",
-    categoryName: "Үндсэн хоол",
-  },
-];
-export const foods: Food[] = [
-  {
-    _id: "1",
-    foodName: "Өглөөний хоол",
-    ingredient: ["сүү", "овьёос"],
-    image: "/heroFood.png",
-    categoryId: "1",
-    categoryName: "Хямдралтай",
-    initialPrice: 16800,
-    discountPercent: 20,
+    id: 2,
+    name: "Хан-уул дүүрэг",
+    value: "Хан-уул дүүрэг",
   },
   {
-    _id: "2",
-    foodName: "Зайрмаг",
-    ingredient: ["сүү", "крийм"],
-    image: "/heroFood.png",
-    categoryId: "1",
-    categoryName: "Хямдралтай",
-    initialPrice: 6800,
-    discountPercent: 0,
+    id: 3,
+    name: "Баянгол дүүрэг",
+    value: "Баянгол дүүрэг",
   },
   {
-    _id: "3",
-    foodName: "Өглөөний хоол",
-    ingredient: ["сүү", "чавга"],
-    image: "/heroFood.png",
-    categoryId: "1",
-    categoryName: "Хямдралтай",
-    initialPrice: 36800,
-    discountPercent: 30,
+    id: 4,
+    name: "Сонгинохайрхан дүүрэг",
+    value: "Сонгинохайрхан дүүрэг",
   },
   {
-    _id: "4",
-    foodName: "Breakfast",
-    ingredient: ["сүү", "чавга", "алим"],
-    image: "/heroFood.png",
-    categoryId: "1",
-    categoryName: "Хямдралтай",
-    initialPrice: 16800,
-    discountPercent: 40,
-  },
-  {
-    _id: "5",
-    foodName: "Breakfast",
-    ingredient: ["сүү", "чавга", "алим", "банана"],
-    image: "/heroFood.png",
-    categoryId: "1",
-    categoryName: "Хямдралтай",
-    initialPrice: 16800,
-    discountPercent: 100,
-  },
-  {
-    _id: "6",
-    foodName: "Breakfast",
-    ingredient: ["сүү", "чавга", "алим", "банана"],
-    image: "/heroFood.png",
-    categoryId: "1",
-    categoryName: "Хямдралтай",
-    initialPrice: 16800,
-    discountPercent: 10,
-  },
-  {
-    _id: "7",
-    foodName: "Main pizza",
-    ingredient: ["сүү", "сонгино", "гурил", "бяслаг"],
-    image: "/heroFood.png",
-    categoryId: "2",
-    categoryName: "Үндсэн хоол",
-    initialPrice: 3800,
-    discountPercent: 20,
-  },
-  {
-    _id: "8",
-    foodName: "Food tart",
-    ingredient: [
-      "сүү",
-      "сонгино",
-      "гурил",
-      "бяслаг",
-      "чавга",
-      "алим",
-      "банана",
-    ],
-    image: "/heroFood.png",
-    categoryId: "2",
-    categoryName: "Үндсэн хоол",
-    initialPrice: 348000,
-    discountPercent: 10,
-  },
-  {
-    _id: "9",
-    foodName: "Cereal",
-    ingredient: ["овьёос"],
-    image: "/heroFood.png",
-    categoryId: "2",
-    categoryName: "Үндсэн хоол",
-    initialPrice: 5334800,
-    discountPercent: 10,
+    id: 5,
+    name: "Чингэлтэй дүүрэг",
+    value: "Чингэлтэй дүүрэг",
   },
 ];
-export const users: User[] = [
+export const khorooSelectionOptions = [
   {
-    _id: "1",
-    name: "Tuguldur",
-    email: "namjildorjtuguldur1234@gmail.com",
-    password: "Tuugii1234",
-    phoneNumber: 90914944,
-    role: "ADMIN",
+    id: 1,
+    name: "1-р хороо",
+    value: "1-р хороо",
   },
   {
-    _id: "2",
-    name: "Tuvshingerel",
-    email: "tuvshingerel1234@gmail.com",
-    password: "Tuvshee1234",
-    phoneNumber: 95394944,
-    role: "USER",
+    id: 2,
+    name: "2-р хороо",
+    value: "2-р хороо",
+  },
+  {
+    id: 3,
+    name: "3-р хороо",
+    value: "3-р хороо",
+  },
+  {
+    id: 4,
+    name: "4-р хороо",
+    value: "4-р хороо",
+  },
+  {
+    id: 5,
+    name: "5-р хороо",
+    value: "5-р хороо",
+  },
+  {
+    id: 6,
+    name: "6-р хороо",
+    value: "6-р хороо",
+  },
+  {
+    id: 7,
+    name: "7-р хороо",
+    value: "7-р хороо",
   },
 ];
-export const orders: Order[] = [
-  {
-    _id: "1",
-    userId: "2",
-    orderNumber: 1,
-    foods: ["6", "8", "1"],
-    totalPrice: 800,
-    process: {
-      isPaid: "PAID",
-      deliveryStatus: "PROGRESS",
-    },
-    createdAt: new Date(),
-    district: "Bayngol",
-    khoroo: "5",
-    apartment: "Narnii khoroolol 19-r bair",
-  },
-];
-export const deliveryStates = {
+export const deliveryColor: {
+  [key: string]: string;
+} = {
   PROGRESS: "#FDF4B6",
   DELIVERED: "#C1E6CF",
-  WAITING: "#ECEDF0",
+  " WAITING": "#ECEDF0",
   ACTIVE: "#C1E6CF",
 };
+export const orderColor: {
+  [key: string]: string;
+} = {
+  0: "#f7dda1",
+  1: "#eed5e8",
+  2: "#ecd5ee",
+  3: "#dfd5ee",
+  4: "#53ded3",
+};
+export const payStates = [
+  {
+    id: 1,
+    value: "PAID",
+    name: "Paid",
+  },
+  {
+    id: 2,
+    value: "NOT_PAID",
+    name: "Not Paid",
+  },
+];
+export const deliveryStates = [
+  { id: 1, value: "PROGRESS", name: "Progress" },
+  {
+    id: 2,
+    value: "DELIVERED",
+    name: "Delivered",
+  },
+  {
+    id: 3,
+    value: "WAITING",
+    name: "Waiting",
+  },
+  {
+    id: 4,
+    value: "ACTIVE",
+    name: "Active",
+  },
+];

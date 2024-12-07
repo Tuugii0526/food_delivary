@@ -12,9 +12,7 @@ export const UserNav = () => {
         <UserProfile user={user}>
           <div>
             <UserIcon />
-            <p className="font-bold text-sm leading-5">
-              {user.role === "ADMIN" ? "ADMIN" : "USER"}
-            </p>
+            <p className="font-bold text-sm leading-5">{user.name}</p>
           </div>
         </UserProfile>
       ) : (

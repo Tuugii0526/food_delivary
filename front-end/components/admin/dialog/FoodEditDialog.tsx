@@ -137,9 +137,8 @@ export function FoodEditDialog({
                   alt="image will inserted here"
                   fill
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    position: "absolute",
+                    objectFit: "cover",
+                    objectPosition: "center",
                   }}
                 />
               </div>
