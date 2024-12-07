@@ -35,7 +35,6 @@ export function AdminAddCategory({
       if (res.ok) {
         toast("You have successfully added category");
         await refresh();
-        console.log("after refresh");
       } else {
         const { error } = await res.json();
         toast(`Failed to create category.Error in server: ${error}`);

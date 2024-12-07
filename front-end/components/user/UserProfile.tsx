@@ -14,6 +14,7 @@ import { UserInfo } from "./UserInfo";
 import { ValidatedUserType } from "@/lib/types";
 // import { deleteToken } from "@/lib/utils";
 import { deleteToken } from "@/lib/actions";
+import Link from "next/link";
 export function UserProfile({
   children,
   user,
@@ -47,12 +48,16 @@ export function UserProfile({
               description="Имэйл хаяг"
               property={user.email}
             />
-            <div className="flex items-center gap-2 py-2 px-5 rounded-sm">
-              <div className="p-2 rounded-full bg-white ">
-                <History />
-              </div>
-              <p>Захиалгын түүх</p>
-            </div>
+            <DialogClose asChild>
+              <Link href={"/order-history"}>
+                <div className="flex items-center gap-2 py-2 px-5 rounded-sm">
+                  <div className="p-2 rounded-full bg-white ">
+                    <History />
+                  </div>
+                  <p>Захиалгын түүх</p>
+                </div>
+              </Link>
+            </DialogClose>
             <DialogClose asChild>
               <button
                 type="button"

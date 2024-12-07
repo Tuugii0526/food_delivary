@@ -16,6 +16,8 @@ type AdminContextType = {
   setCurt: (value: FoodCategoryType) => void;
   cts: FoodCategoryType[];
   editCategoryName: (id: string, newName: string) => void;
+  foodAddSensor: boolean;
+  editFoodSensor: () => void;
 };
 const AdminContext = createContext<AdminContextType>({
   curt: {
@@ -25,6 +27,8 @@ const AdminContext = createContext<AdminContextType>({
   setCurt: function () {},
   cts: [],
   editCategoryName: function () {},
+  foodAddSensor: false,
+  editFoodSensor: function () {},
 });
 export const AdminContextProvider = ({
   children,
@@ -37,8 +41,14 @@ export const AdminContextProvider = ({
   const [curt, setCurt] = useState(
     categories[Math.floor(categories.length / 2)]
   );
-  const updateCts: Dispatch<SetStateAction<FoodCategoryType[]>> = setCts;
+  const [foodAddSensor, setFoodAddSensor] = useState<boolean>(false);
   const updateCurt: Dispatch<SetStateAction<FoodCategoryType>> = setCurt;
+  const updateCts: Dispatch<SetStateAction<FoodCategoryType[]>> = setCts;
+  const updateFoodAddSensor: Dispatch<SetStateAction<boolean>> =
+    setFoodAddSensor;
+  const editFoodSensor = useCallback(() => {
+    updateFoodAddSensor((pre) => !pre);
+  }, [updateFoodAddSensor]);
   const editCategoryName = useCallback(
     (id: string, newName: string) => {
       updateCts((cts) => {
@@ -54,8 +64,15 @@ export const AdminContextProvider = ({
     [updateCts, updateCurt]
   );
   const value = useMemo(() => {
-    return { curt, setCurt, cts, editCategoryName };
-  }, [cts, curt, setCurt, editCategoryName]);
+    return {
+      curt,
+      setCurt,
+      cts,
+      editCategoryName,
+      foodAddSensor,
+      editFoodSensor,
+    };
+  }, [cts, curt, setCurt, editCategoryName, foodAddSensor, editFoodSensor]);
   useEffect(() => {
     setCts(categories);
     setCurt(categories[Math.floor(categories.length / 2)]);
