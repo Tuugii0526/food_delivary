@@ -31,7 +31,7 @@ export const Steps = () => {
       setLoading(false);
       if (res.ok) {
         toast("You have successfully ordered food");
-        router.push("/");
+        router.push("/order-history");
         dispatch({ type: "DELETE_ALL" });
       } else {
         if (res.status == 401) {
