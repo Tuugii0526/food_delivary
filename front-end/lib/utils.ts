@@ -39,16 +39,16 @@ export const cartTotalPriceCalculator = (
 };
 
 export const getToken = () => {
-  if (typeof window !== "undefined") {
+  if (typeof document !== "undefined") {
     const cookies = document.cookie;
-    console.log("cookies inside steps:", cookies);
     if (!cookies) {
       return "";
     } else {
-      return cookies
+      const token = cookies
         ?.split(";")
-        ?.filter((cookie) => cookie.startsWith("token"))[0]
+        ?.filter((cookie) => /\s*token=/.test(cookie))[0]
         ?.split("=")[1];
+      return token;
     }
   } else {
     return "";

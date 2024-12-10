@@ -1,8 +1,13 @@
 import { OneTypeFoods } from "./OneTypeFoods";
 import { CategoryGroupFoodsType } from "@/lib/types";
 export const FoodsContainer = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/food`);
-  const data = await res.json();
+  let data;
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/food`);
+    data = await res.json();
+  } catch (error) {
+    return <div>Error !! ${`${error}`}</div>;
+  }
 
   return (
     <div className="container flex flex-col gap-20 mb-20">
