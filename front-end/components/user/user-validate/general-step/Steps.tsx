@@ -13,6 +13,7 @@ export const Steps = () => {
   const [loading, setLoading] = useState(false);
   const cart = useCart();
   const dispatch = useCartDispatch();
+  const token = getToken();
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
@@ -24,15 +25,15 @@ export const Steps = () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_DATABASE_URL}/order`, {
         method: "post",
         headers: {
-          Authorization: `${getToken()}`,
+          Authorization: `${token}`,
         },
         body: formData,
       });
       setLoading(false);
       if (res.ok) {
         toast("You have successfully ordered food");
-        router.push("/order-history");
         dispatch({ type: "DELETE_ALL" });
+        router.push("/order-history");
       } else {
         if (res.status == 401) {
           toast(`Please log in`);
@@ -49,11 +50,10 @@ export const Steps = () => {
   const [step1Validated, setStep1Validated] = useState(false);
   const [byCach, setByCach] = useState<boolean>(false);
   const [byCard, setByCard] = useState<boolean>(false);
-  const addressInfoInserted = correct && (byCach || byCard);
-  console.log("correct is:", correct);
-  console.log("by cash:", byCach);
-  console.log("by card:", byCard);
-  console.log("addressinfoInserted:", addressInfoInserted);
+  console.log("bYCash:", byCach);
+  console.log("byCard:", byCard);
+  // const addressInfoInserted = correct && (byCach || byCard);
+  const addressInfoInserted = correct;
   if (step1Validated != addressInfoInserted) {
     setStep1Validated(addressInfoInserted);
   }

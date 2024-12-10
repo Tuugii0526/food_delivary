@@ -12,7 +12,9 @@ export const HistoryOrder = ({
   setChosenOrder: (value: Order) => void;
 }) => {
   const date = new Date(order.createdAt);
-  const dateFixed = `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`;
+  const dateFixed = `${date.getFullYear()}/${
+    date.getMonth() + 1
+  }/${date.getDate()}`;
   const isOrderSuccess =
     order.isPaid == "PAID" && order.deliveryStatus == "DELIVERED";
   return (
