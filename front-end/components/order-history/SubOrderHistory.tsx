@@ -13,7 +13,7 @@ export const SubOrderHistory = ({ orders }: { orders: Order[] }) => {
       <div className="w-full container">
         <div className=" w-[90%] max-h-[720px] h-fit m-auto my-10  flex flex-col ">
           <p className={`${poppins.className}`}>
-            You don't have any order yet :D
+            You don&#39;t have any order yet :D
           </p>
           <Link
             href={"/menu"}
