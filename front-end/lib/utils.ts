@@ -41,13 +41,14 @@ export const cartTotalPriceCalculator = (
 export const getToken = () => {
   if (typeof window !== "undefined") {
     const cookies = document.cookie;
+    console.log("cookies inside steps:", cookies);
     if (!cookies) {
       return "";
     } else {
       return cookies
         ?.split(";")
-        .filter((cookie) => cookie.startsWith("token"))[0]
-        .split("=")[1];
+        ?.filter((cookie) => cookie.startsWith("token"))[0]
+        ?.split("=")[1];
     }
   } else {
     return "";
