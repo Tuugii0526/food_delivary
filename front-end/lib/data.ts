@@ -17,11 +17,7 @@ export const getCategories = cache(async () => {
       };
     }
   } catch (error) {
-    return {
-      success: false,
-      message: "error",
-      categories: [],
-    };
+    throw new Error(`${error}`);
   }
 });
 
