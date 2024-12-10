@@ -40,6 +40,12 @@ export const useCheckFormInputs = () => {
     for (const data of formData.values()) {
       letterSum += data ? 1 : 0;
     }
+    for (const data of formData.keys()) {
+      console.log("key:", data);
+    }
+    for (const data of formData.values()) {
+      console.log("value:", data);
+    }
     if (letterSum == formData.values().toArray().length) {
       setCorrect(true);
     } else {

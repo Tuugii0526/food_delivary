@@ -42,7 +42,7 @@ export const Steps = () => {
         }
       }
     } catch (error) {
-      console.log("error inside steps:", error);
+      throw new Error(`${error}`);
     }
   };
   const { correct, onChange } = useCheckFormInputs();
@@ -50,6 +50,10 @@ export const Steps = () => {
   const [byCach, setByCach] = useState<boolean>(false);
   const [byCard, setByCard] = useState<boolean>(false);
   const addressInfoInserted = correct && (byCach || byCard);
+  console.log("correct is:", correct);
+  console.log("by cash:", byCach);
+  console.log("by card:", byCard);
+  console.log("addressinfoInserted:", addressInfoInserted);
   if (step1Validated != addressInfoInserted) {
     setStep1Validated(addressInfoInserted);
   }
