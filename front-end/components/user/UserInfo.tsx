@@ -14,12 +14,12 @@ export const UserInfo = ({
 }: UserInfoType) => {
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
+  const initialValue: string = user ? user[property] || "" : "";
+  const [value, setValue] = useState<string>(initialValue);
+  const { editUser } = useBeAwareContext();
   if (!user) {
     return <p>No user data</p>;
   }
-  const initialValue: string = user[property] ? user[property] : "";
-  const [value, setValue] = useState<string>(initialValue);
-  const { editUser } = useBeAwareContext();
   return (
     <div
       className={`w-[300px] flex gap-2 py-2 px-5 bg-[#F6F6F6] border  rounded-sm border-white hover:border-green-500`}

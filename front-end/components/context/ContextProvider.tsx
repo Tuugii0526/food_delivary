@@ -48,23 +48,26 @@ export const ContextProvider = ({
     setUser(u);
   }, [u]);
   const updateUser: Dispatch<SetStateAction<ValidatedUserType>> = setUser;
-  const editUser = useCallback((type: "name" | "email", value: string) => {
-    updateUser((pre) => {
-      switch (type) {
-        case "name": {
-          const newUser: ValidatedUserType = { ...pre, name: value };
-          return newUser;
+  const editUser = useCallback(
+    (type: "name" | "email", value: string) => {
+      updateUser((pre) => {
+        switch (type) {
+          case "name": {
+            const newUser: ValidatedUserType = { ...pre, name: value };
+            return newUser;
+          }
+          case "email": {
+            const newUser: ValidatedUserType = {
+              ...pre,
+              email: value,
+            };
+            return newUser;
+          }
         }
-        case "email": {
-          const newUser: ValidatedUserType = {
-            ...pre,
-            email: value,
-          };
-          return newUser;
-        }
-      }
-    });
-  }, []);
+      });
+    },
+    [updateUser]
+  );
   const value = useMemo(
     () => ({ categoryResponse, user, editUser }),
     [categoryResponse, user, editUser]
