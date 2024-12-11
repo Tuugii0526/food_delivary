@@ -9,12 +9,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { History, LogOutIcon, Mail, Pencil, User } from "lucide-react";
+import { History, LogOutIcon, Pencil } from "lucide-react";
 import { UserInfo } from "./UserInfo";
 import { ValidatedUserType } from "@/lib/types";
 // import { deleteToken } from "@/lib/utils";
 import { deleteToken } from "@/lib/actions";
 import Link from "next/link";
+import { userInfos } from "@/lib/data-all/CheckCategoryIcons";
+import { poppins } from "@/app/fonts/fonts";
 export function UserProfile({
   children,
   user,
@@ -28,29 +30,30 @@ export function UserProfile({
         {children}
       </DialogTrigger>
       <DialogContent className="sm:max-w-md flex justify-center">
-        <form className="flex flex-col p-8 gap-6 rounded-2xl w-fit ">
+        <form className="flex flex-col  gap-2 rounded-2xl w-fit ">
           <DialogHeader className="flex flex-col gap-10 items-center justify-between">
-            <div className="w-[120px] h-[120px] rounded-full bg-slate-200 relative">
-              <div className="absolute bg-white rounded-full -bottom-4 -right-2 p-2 text-[#18BA51] border border-[#D6D8DB]">
-                <Pencil />
-              </div>
+            <div className="w-[120px] h-[120px] flex items-center justify-center border border-black rounded-full relative">
+              <p
+                className={`${poppins.className} font-extrabold leading-10 text-[80px] uppercase text-green-500`}
+              >
+                {user?.name ? user.name[0] : ""}
+              </p>
             </div>
-            <DialogTitle>{user.name}</DialogTitle>
+            <DialogTitle>{user?.name}</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col px-5 pt-4 pb-0 gap-4">
-            <UserInfo
-              icon={<User />}
-              description="Таны нэр"
-              property={user.name}
-            />
-            <UserInfo
-              icon={<Mail />}
-              description="Имэйл хаяг"
-              property={user.email}
-            />
+            {userInfos.map((info) => (
+              <UserInfo
+                key={info?.id}
+                icon={info.icon}
+                description={info.description}
+                property={info.property}
+                user={user}
+              />
+            ))}
             <DialogClose asChild>
               <Link href={"/order-history"}>
-                <div className="flex items-center gap-2 py-2 px-5 rounded-sm">
+                <div className="flex items-center gap-2 py-2 px-5 rounded-sm border   border-white hover:border-green-500">
                   <div className="p-2 rounded-full bg-white ">
                     <History />
                   </div>
@@ -61,7 +64,7 @@ export function UserProfile({
             <DialogClose asChild>
               <button
                 type="button"
-                className="flex items-center gap-2 py-2 px-5 rounded-sm"
+                className="flex items-center gap-2 py-2 px-5 border  rounded-sm border-white hover:border-green-500 "
                 onClick={async () => {
                   await deleteToken();
                 }}

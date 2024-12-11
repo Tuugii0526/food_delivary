@@ -23,7 +23,7 @@ export const useCount = () => {
 export const useInput = (initialValue: string) => {
   const [inputValue, setInputValue] = useState<string>(initialValue);
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setInputValue(e.target.value.trim());
   }, []);
 
   const inputProps = {

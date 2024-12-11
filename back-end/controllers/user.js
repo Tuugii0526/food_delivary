@@ -66,4 +66,63 @@ const login = async (req, res) => {
     });
   }
 };
-export { createUser, login };
+const updateUser = async (req, res) => {
+  try {
+    const { name, email, id } = req.query;
+    if (name) {
+      const updatedUser = await User.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            name: name,
+          },
+        },
+        {
+          new: true,
+        }
+      );
+      if (updatedUser) {
+        const oldExp = req.user.exp;
+        const token = jwt.sign(
+          {
+            userId: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            role: updatedUser.role,
+            exp: oldExp,
+          },
+          process.env.SESSION_SECRET
+        );
+        return res.status(201).json({ token, oldExp });
+      } else {
+        return res.status(400).json({ success: false });
+      }
+    }
+    if (email) {
+      const updatedUser = await User.findByIdAndUpdate(id, {
+        $set: {
+          email: email,
+        },
+      });
+      if (updatedUser) {
+        const oldExp = req.user.exp;
+        const token = jwt.sign(
+          {
+            userId: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            role: updatedUser.role,
+            exp: oldExp,
+          },
+          process.env.SESSION_SECRET
+        );
+        return res.status(201).json({ token, oldExp });
+      } else {
+        return res.status(400).json({ success: false });
+      }
+    }
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
+};
+export { createUser, login, updateUser };

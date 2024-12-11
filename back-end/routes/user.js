@@ -1,8 +1,10 @@
 import express from "express";
 import multer from "multer";
 const upload = multer();
-import { createUser, login } from "../controllers/user.js";
+import { createUser, login, updateUser } from "../controllers/user.js";
+import { authenticateToken } from "../middleware/authenticateToken.js";
 const userRouter = express.Router();
 userRouter.post("/user", upload.array(), createUser);
 userRouter.post("/login", upload.array(), login);
+userRouter.put("/user", authenticateToken, updateUser);
 export default userRouter;
