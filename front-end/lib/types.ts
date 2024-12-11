@@ -63,9 +63,11 @@ export type OrderProcessType = {
   deliveryStatus: string;
 };
 export type UserInfoType = {
+  id?: number;
   icon: JSX.Element;
   description: string;
-  property: string | undefined;
+  property: "email" | "name";
+  user?: ValidatedUserType;
 };
 export type CountPropsFunctionsType = [number, () => void, () => void];
 
@@ -105,9 +107,9 @@ export type SignupState = {
 };
 export type ValidatedUserType = {
   userId: string;
-  name?: string | undefined;
-  email?: string | undefined;
-  role?: "ADMIN" | "USER" | undefined;
+  name?: string;
+  email?: string;
+  role?: "ADMIN" | "USER";
 };
 export type CategoryResponseType = {
   success: boolean;

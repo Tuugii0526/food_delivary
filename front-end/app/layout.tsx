@@ -25,7 +25,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ContextProvider categoryResponse={res} user={user}>
+        <ContextProvider categoryResponse={res} u={user}>
           <CartContextProvider>
             {!user.userId || user.role == "USER" ? (
               <div className="relative">

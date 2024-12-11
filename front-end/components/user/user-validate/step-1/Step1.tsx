@@ -32,7 +32,7 @@ export const Step1 = ({
               id="district"
               className={`outline-none`}
               onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-                setDistrict(e.target.value);
+                setDistrict(e.target.value.trim());
               }}
             >
               <option value="">Дүүрэг сонгоно уу</option>
@@ -54,7 +54,7 @@ export const Step1 = ({
               id="neighborhoud"
               className={`outline-none`}
               onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-                setNeighborhood(e.target.value);
+                setNeighborhood(e.target.value.trim());
               }}
             >
               <option value="">Хороо сонгоно уу</option>

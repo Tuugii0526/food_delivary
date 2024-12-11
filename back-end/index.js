@@ -20,8 +20,8 @@ app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use("/api", foodRouter);
-app.use("/api", userRouter);
 app.use("/api", counterRouter);
+app.use("/api", userRouter);
 app.use("/api", categoryRouter); //auth is applied
 app.use("/api", orderRouter); //auth is applied
 app.use("/api", authenticateToken, authRouter); //auth is applied

@@ -10,10 +10,16 @@ import {
   createContext,
   //  useState,
   useMemo,
+  useState,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+  useCallback,
 } from "react";
 type ContextType = {
   categoryResponse: CategoryResponseType;
   user: ValidatedUserType;
+  editUser: (type: "name" | "email", value: string) => void;
 };
 const Context = createContext<ContextType>({
   categoryResponse: {
@@ -23,22 +29,48 @@ const Context = createContext<ContextType>({
   },
   user: {
     userId: "",
+    name: "",
+    email: "",
   },
+  editUser: function () {},
 });
 export const ContextProvider = ({
   children,
   categoryResponse,
-  user,
+  u,
 }: {
   children: React.ReactNode;
   categoryResponse: CategoryResponseType;
-  user: ValidatedUserType;
+  u: ValidatedUserType;
 }) => {
-  // const [ct] = useState<FoodCategoryType[]>(categoryResponse.categories);
-  //ct is categories
+  const [user, setUser] = useState<ValidatedUserType>(u);
+  useEffect(() => {
+    setUser(u);
+  }, [u]);
+  const updateUser: Dispatch<SetStateAction<ValidatedUserType>> = setUser;
+  const editUser = useCallback(
+    (type: "name" | "email", value: string) => {
+      updateUser((pre) => {
+        switch (type) {
+          case "name": {
+            const newUser: ValidatedUserType = { ...pre, name: value };
+            return newUser;
+          }
+          case "email": {
+            const newUser: ValidatedUserType = {
+              ...pre,
+              email: value,
+            };
+            return newUser;
+          }
+        }
+      });
+    },
+    [updateUser]
+  );
   const value = useMemo(
-    () => ({ categoryResponse, user }),
-    [categoryResponse, user]
+    () => ({ categoryResponse, user, editUser }),
+    [categoryResponse, user, editUser]
   );
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

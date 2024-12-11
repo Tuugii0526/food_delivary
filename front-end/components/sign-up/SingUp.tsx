@@ -77,7 +77,7 @@ export const SignUp = () => {
             className={`login-input`}
             required
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setRepassword(e.target.value);
+              setRepassword(e.target.value.trim());
             }}
           />
           {isPasswordCorrect(password) && password !== rePassword && (

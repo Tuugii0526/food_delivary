@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "res.cloudinary.com",
         pathname: "/food-delivary/**",
       },
+      {
+        protocol: "https",
+        hostname: "profile.accounts.firefox.com",
+        pathname: "/v1/avatar/**",
+      },
     ],
   },
 };

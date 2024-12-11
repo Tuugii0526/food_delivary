@@ -45,3 +45,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 //7. Be aware be alert
 //8 . Fixed time is important
 //9. Steps check
+//10.useState cannot be used in conditional

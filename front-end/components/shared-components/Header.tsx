@@ -10,21 +10,23 @@ export default function Header() {
         <PineconeIcon fill="black" />
         <NavigationLinks />
       </div>
-      <div className="flex items-center gap-2 *:px-2 *:py-1 *:flex *:gap-2">
+      <div className="flex items-center justify-between gap-2 *:px-2 *:py-1 *:flex *:gap-2">
         <label
           htmlFor="search"
-          className="w-[30%] max-w-[260px] border-2 border-white rounded-[8px] has-[:focus]:border-gray-300"
+          className="w-[40%] right-10 max-w-[260px] border-2 p-2  rounded-[8px] has-[:focus]:ring-2 has-[:focus]:ring-offset-2 has-[:focus]:w-[50%] transition-all relative"
         >
-          <Search />
+          <Search className="w-5 h-5 text-gray-400" />
           <input
             id="search"
             type="text"
             placeholder="Хайх"
-            className="outline-none"
+            className="outline-none overflow-x-scroll w-full"
           />
         </label>
-        <ShoppingBagDialog />
-        <UserNav />
+        <div className="flex items-center justify-between gap-2 *:px-2 *:py-1 *:flex *:gap-2">
+          <ShoppingBagDialog />
+          <UserNav />
+        </div>
       </div>
     </div>
   );

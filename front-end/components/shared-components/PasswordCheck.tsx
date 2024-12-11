@@ -42,7 +42,7 @@ export const PasswordCheck = ({
           placeholder="Нууц үг оруулна уу"
           className="login-input"
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setPassword(e.target.value);
+            setPassword(e.target.value.trim());
           }}
         />
         <button

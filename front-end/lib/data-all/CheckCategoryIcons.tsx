@@ -1,4 +1,12 @@
-import { BookOpen, ChefHatIcon, Clock, MenuSquare } from "lucide-react";
+import {
+  BookOpen,
+  ChefHatIcon,
+  Clock,
+  Mail,
+  MenuSquare,
+  User,
+} from "lucide-react";
+import { UserInfoType } from "../types";
 
 export const checkCategoryIcons = [
   {
@@ -20,5 +28,14 @@ export const checkCategoryIcons = [
     id: 4,
     iconName: "MenuSquare",
     icon: <MenuSquare />,
+  },
+];
+export const userInfos: UserInfoType[] = [
+  { id: 1, icon: <User />, description: "Таны нэр", property: "name" },
+  {
+    id: 2,
+    icon: <Mail />,
+    description: "Имэйл хаяг",
+    property: "email",
   },
 ];
