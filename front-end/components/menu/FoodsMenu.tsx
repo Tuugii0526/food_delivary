@@ -16,7 +16,7 @@ export const FoodsMenu = () => {
       setCategoryFoods(data.data);
     }
     fetchCategoryFoods();
-  }, [categoryQuery]);
+  }, [categoryQuery, query]);
   const result: JSX.Element[] = [];
   const temporaryContainer: Food[] = [];
   let key = 0;
