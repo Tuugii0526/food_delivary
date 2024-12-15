@@ -39,14 +39,14 @@ export const ShoppingBagDialog = () => {
           {countFoods?.length ? (
             countFoods?.map((countFood) => (
               <ShoppingBagFoodCard
-                key={countFood.food._id}
+                key={countFood?.food?._id}
                 countFood={countFood}
               />
             ))
           ) : (
             <div className="p-4 w-full h-fit"> Cart is empty</div>
           )}
-          <div className="sticky bottom-0 py-4 px-8 w-full flex justify-between items-center bg-white shadow-2xl rounded-md">
+          <div className="sticky bottom-0 py-2 px-8 w-full flex justify-between items-center bg-white shadow-2xl rounded-md">
             <div className="flex  flex-col gap-1 w-1/2 ">
               <p className="text-[#5E6166] ">Нийт төлөх дүн</p>
               <p className={`text-[#121316] ${poppins.className}`}>

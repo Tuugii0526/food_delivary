@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
 import { OneTypeFoods } from "../home/foods/OneTypeFoods";
 import { Food } from "@/lib/types";
-import { useCurrentCategoryId } from "../context/CategoryContextProvider";
+import { useSearchParams } from "next/navigation";
 export const FoodsMenu = () => {
-  const { curCat } = useCurrentCategoryId();
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query");
+  const categoryQuery = searchParams.get("categoryQuery");
   const [categoryFoods, setCategoryFoods] = useState<Food[]>([]);
-  const currentCategoryId = curCat?._id;
   useEffect(() => {
     async function fetchCategoryFoods() {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_DATABASE_URL}/food?categoryQuery=${currentCategoryId}`
+        `${process.env.NEXT_PUBLIC_DATABASE_URL}/food?categoryQuery=${categoryQuery}&searchQuery=${query}`
       );
       const data = await res.json();
       setCategoryFoods(data.data);
     }
     fetchCategoryFoods();
-  }, [currentCategoryId]);
+  }, [categoryQuery]);
   const result: JSX.Element[] = [];
   const temporaryContainer: Food[] = [];
   let key = 0;
-  if (categoryFoods.length > 0) {
+  if (categoryFoods?.length > 0) {
     categoryFoods.forEach((food) => {
       if (temporaryContainer.length < 4) {
         temporaryContainer.push(food);
@@ -30,7 +31,7 @@ export const FoodsMenu = () => {
       }
       key++;
     });
-    if (temporaryContainer.length !== 0) {
+    if (temporaryContainer?.length !== 0) {
       result.push(<OneTypeFoods key={key} foods={[...temporaryContainer]} />);
     }
   }

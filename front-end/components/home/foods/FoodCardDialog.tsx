@@ -37,10 +37,10 @@ export function FoodCardDialog({
       <DialogTrigger className="user-nav" asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className=" flex  gap-8 w-fit h-fit  p-8 ">
+      <DialogContent className=" flex  gap-2 w-fit h-fit  p-8 ">
         <div className="w-[200px] h-[200px] relative">
           <Image
-            src={food.image}
+            src={food?.image}
             alt={food.foodName}
             fill
             style={{
@@ -49,7 +49,7 @@ export function FoodCardDialog({
             }}
           />
         </div>
-        <div className="flex flex-col min-w-[200px] gap-8 ">
+        <div className="flex flex-col w-[200px] gap-8 ">
           <DialogHeader className="flex flex-col gap-[2px]">
             <DialogTitle className={`${poppins.className}`}>
               {food.foodName}

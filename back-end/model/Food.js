@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import Counter from "./Counter.js";
 const foodSchema = new mongoose.Schema({
   foodName: {
     type: String,
@@ -18,6 +17,11 @@ const foodSchema = new mongoose.Schema({
     required: true,
   },
   categoryId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+    required: true,
+  },
+  categoryName: {
     type: String,
     required: true,
   },

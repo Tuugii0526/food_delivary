@@ -12,11 +12,11 @@ export const ShoppingBagFoodCard = ({
 }) => {
   const dispatch = useCartDispatch();
   return (
-    <div className="h-[182px] w-full p-4 flex justify-between">
+    <div className="h-full min-h-[182px] max-h-[220px] w-full p-4 flex justify-between">
       <div className="w-[49%] h-full bg-green-300 relative">
         <Image
-          src={countFood.food.image}
-          alt={countFood.food.foodName}
+          src={countFood?.food?.image}
+          alt={countFood?.food?.foodName}
           fill
           style={{
             objectFit: "cover",
@@ -42,7 +42,7 @@ export const ShoppingBagFoodCard = ({
         <p className={`text-[#18BA51] ${poppins.className}`}>
           {countFood.howMuch}₮
         </p>
-        <div className="flex flex-wrap w-full rounded-lg  ">
+        <div className="flex flex-wrap w-full rounded-lg text-sm ">
           {countFood.food.ingredient.map((ing) => (
             <p key={ing}>
               {ing}

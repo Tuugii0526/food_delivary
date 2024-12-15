@@ -33,7 +33,7 @@ export const AdminCategory = ({ category }: { category: FoodCategoryType }) => {
             value={categoryName}
             className="w-full h-fit text-wrap"
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-              setCategoryName(e.target.value.trim());
+              setCategoryName(e.target.value);
             }}
           />
         </label>

@@ -1,21 +1,23 @@
 import { CheckCategories } from "@/components/home/check-categories/CheckCategories";
 import { FoodsContainer } from "@/components/home/foods/FoodsContainer";
 import { Hero } from "@/components/home/hero/Hero";
-export default async function Home() {
-  // let data;
-  // let error;
-  // try {
-  //   const res = await fetch(`${process.env.DATABASE_URL}`);
-  //   data = await res.json();
-  // } catch (error) {
-  //   error = `${error}`;
-  //   console.log("error :", error);
-  // }
+import { FoodsContainerSkeleton } from "@/components/skeleton/FoodsContainerSkeleton";
+import { SearchParamsType } from "@/lib/types";
+import { Suspense } from "react";
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: SearchParamsType;
+}) {
+  const { query } = await searchParams;
+  const finalQuery = query || "";
   return (
     <>
       <Hero />
       <CheckCategories />
-      <FoodsContainer />
+      <Suspense fallback={<FoodsContainerSkeleton />}>
+        <FoodsContainer query={finalQuery} />
+      </Suspense>
     </>
   );
 }

@@ -1,11 +1,13 @@
 import { poppins } from "@/app/fonts/fonts";
+import { FoodCategoryType } from "@/lib/types";
 import { ChevronRight, StarsIcon } from "lucide-react";
+import Link from "next/link";
 
 export const Top = ({
-  categoryName,
+  category,
   length,
 }: {
-  categoryName: string;
+  category: FoodCategoryType;
   length: number;
 }) => {
   return (
@@ -15,14 +17,17 @@ export const Top = ({
         <p
           className={`${poppins.className} text-[22px] leading-[33px] text-[#272727]`}
         >
-          {categoryName}
+          {category?.categoryName}
         </p>
       </div>
       {length > 4 && (
-        <div className="flex items-center gap-[5px] text-[#18BA51]">
+        <Link
+          href={`/menu?categoryQuery=${category?._id}`}
+          className="flex items-center gap-[5px] text-[#18BA51]"
+        >
           <p className=" font-normal text-sm">Бүгдийг харах</p>
           <ChevronRight />
-        </div>
+        </Link>
       )}
     </div>
   );

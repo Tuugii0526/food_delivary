@@ -1,22 +1,22 @@
-import { Food } from "@/lib/types";
+import { Food, FoodCategoryType } from "@/lib/types";
 import { Top } from "./one-type-foods/Top";
 import { FoodCard } from "./FoodCard";
 
 export const OneTypeFoods = ({
   foods,
-  categoryName,
+  category,
 }: {
   foods: Food[];
-  categoryName?: string;
+  category?: FoodCategoryType;
 }) => {
   const length = foods.length;
   return (
     <div className="flex flex-col justify-around">
-      {typeof categoryName !== "undefined" && (
-        <Top categoryName={categoryName} length={length} />
+      {typeof category?.categoryName !== "undefined" && (
+        <Top category={category} length={length} />
       )}
       <div className="w-full h-fit flex gap-6 overflow-hidden">
-        {foods.map((food) => (
+        {foods?.map((food) => (
           <FoodCard key={food._id} food={food} />
         ))}
       </div>

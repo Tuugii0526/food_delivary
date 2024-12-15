@@ -19,7 +19,7 @@ const createCategory = async (req, res) => {
   try {
     const { category } = req.body;
     const created = await Category.create({
-      categoryName: category,
+      categoryName: category?.trim(),
     });
     if (created) {
       return res.status(201).json({ created });
