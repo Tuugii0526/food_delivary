@@ -36,7 +36,7 @@ export const AdminFoodCard = ({ food }: { food: Food }) => {
   return (
     <FoodEditDialog food={food}>
       <div className="h-[256px] w-full ">
-        <div className="h-full  flex flex-col w-full flex-shrink-0 relative justify-between border-b border-r border-t hover:shadow-[2px_3px_2px_0_#d1d5dbd7]  border-white hover:border-[#d1d5dbd7] rounded-sm">
+        <div className="h-full  flex flex-col w-full flex-shrink-0 relative justify-between border-b border-r border-t hover:shadow-[2px_3px_2px_0_#d1d5dbd7]  border-white hover:border-[#d1d5dbd7] rounded-sm p-4">
           <div className="w-full relative rounded-sm h-[70%]">
             {food.discountPercent > 0 && (
               <DiscountPercent discountPercent={food.discountPercent} />

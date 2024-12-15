@@ -17,7 +17,7 @@ export const SubMenu = () => {
       params.set("categoryQuery", categoryResponse?.categories[0]._id);
       replace(`${pathname}?${params.toString()}`);
     }
-  }, []);
+  }, ["categoryResponse?.categories", "pathname", "replace", "searchParams"]);
   return (
     <div className="container flex flex-col">
       <FoodCategories categories={categoryResponse.categories} />

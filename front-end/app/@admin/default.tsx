@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function Default() {
-  return <div>Iam default</div>;
+  redirect("/");
 }

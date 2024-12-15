@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { OneTypeFoods } from "../home/foods/OneTypeFoods";
 import { Food } from "@/lib/types";
 import { useSearchParams } from "next/navigation";
+import { poppins } from "@/app/fonts/fonts";
 export const FoodsMenu = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
@@ -35,5 +36,14 @@ export const FoodsMenu = () => {
       result.push(<OneTypeFoods key={key} foods={[...temporaryContainer]} />);
     }
   }
-  return <div className="my-20 w-full flex flex-col gap-20">{result}</div>;
+  if (result.length > 0) {
+    return <div className="my-20 w-full flex flex-col gap-20">{result}</div>;
+  }
+  return (
+    <div
+      className={`my-20 w-full flex flex-col gap-20 bg-green-500 text-center py-2  rounded-md ${poppins.className}`}
+    >
+      No searched results
+    </div>
+  );
 };

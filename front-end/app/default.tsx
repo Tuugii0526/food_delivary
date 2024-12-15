@@ -1,6 +1,9 @@
-import { redirect } from "next/navigation";
+"use client";
+
+import { useRouter } from "next/navigation";
 
 export default function Default() {
-  redirect("/");
-  return <div>Iam children default</div>;
+  console.log("Iam working");
+  const router = useRouter();
+  router.replace("/");
 }
