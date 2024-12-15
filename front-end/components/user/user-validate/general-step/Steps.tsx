@@ -50,9 +50,9 @@ export const Steps = () => {
   const [step1Validated, setStep1Validated] = useState(false);
   const [byCach, setByCach] = useState<boolean>(false);
   const [byCard, setByCard] = useState<boolean>(false);
-  console.log("bYCash:", byCach);
-  console.log("byCard:", byCard);
   // const addressInfoInserted = correct && (byCach || byCard);
+  console.log("byCash:", byCach);
+  console.log("byCard:", byCard);
   const addressInfoInserted = correct;
   if (step1Validated != addressInfoInserted) {
     setStep1Validated(addressInfoInserted);

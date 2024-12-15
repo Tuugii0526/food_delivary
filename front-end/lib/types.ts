@@ -93,10 +93,9 @@ export type ParamsType = Promise<{
 // export type SearchParamsTypeNotPromise = {
 //   errors: validatedFields.error.flatten().fieldErrors
 // };
-
 export type CategoryGroupFoodsType = {
-  Category: FoodCategoryType & { _v: number };
-  CategoryFoods: (Food & { _v: number })[];
+  _id: FoodCategoryType;
+  CategoryFoods: Food[];
 };
 
 export type SignupState = {

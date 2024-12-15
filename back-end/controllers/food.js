@@ -1,7 +1,8 @@
 import { v2 as cloudinary } from "cloudinary";
 import { Counter, Food } from "../model/index.js";
 import "dotenv/config";
-import { getAllBlogsByCategories } from "../lib/getAllBlogs.js";
+import mongoose from "mongoose";
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUDNAME,
   api_key: process.env.CLOUDINARY_APIKEY,
@@ -9,22 +10,61 @@ cloudinary.config({
   secure: true,
 });
 const getFoods = async (req, res, next) => {
-  const { categoryQuery } = req.query;
+  const { categoryQuery, searchQuery } = req.query;
+  const fixedQuery = searchQuery !== "null" ? searchQuery?.toLowerCase() : "";
   try {
     if (!categoryQuery) {
-      const foods = await getAllBlogsByCategories();
+      const groupedFood = await Food.aggregate([
+        {
+          $search: {
+            index: "default", // The name of your Atlas Search index
+            regex: {
+              query: `.*${fixedQuery}.*`,
+              path: "foodName", // The field you indexed with the keyword analyzer
+            },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              _id: "$categoryId",
+              categoryName: "$categoryName",
+            },
+            CategoryFoods: { $push: "$$ROOT" },
+          },
+        },
+      ]);
       return res.json({
         success: true,
-        data: foods,
+        data: groupedFood,
       });
     }
-    const categoryFoods = await Food.find({ categoryId: categoryQuery });
-    return res.json({
+    let categoryFoods;
+    if (fixedQuery) {
+      categoryFoods = await Food.aggregate([
+        {
+          $match: {
+            categoryId: new mongoose.Types.ObjectId(categoryQuery),
+            foodName: { $regex: `.*${fixedQuery}.*`, $options: "si" },
+          },
+        },
+      ]);
+    } else {
+      categoryFoods = await Food.aggregate([
+        {
+          $match: {
+            categoryId: new mongoose.Types.ObjectId(categoryQuery),
+          },
+        },
+      ]);
+    }
+
+    return res.status(200).json({
       success: true,
       data: categoryFoods,
     });
   } catch (error) {
-    return res.json({
+    return res.status(500).json({
       success: false,
       message: `${error}`,
     });
@@ -69,18 +109,21 @@ const createFood = async (req, res, next) => {
         )
         .end(buffer);
     });
-    const foodIngredientArray = foodIngredient.split(",");
+    const foodIngredientArray = foodIngredient?.split(",");
+    const categoryId = foodCategory?.split(";")[0];
+    const categoryName = foodCategory?.split(";")[1];
     const counter = await Counter.findOneAndUpdate(
       { name: "food" },
       { $inc: { number: 1 } },
       { new: false }
     );
     await Food.create({
-      foodName: foodName,
+      foodName: foodName?.toLowerCase(),
       foodNumber: counter.number,
       ingredient: foodIngredientArray,
       image: url,
-      categoryId: foodCategory,
+      categoryId: categoryId,
+      categoryName: categoryName,
       initialPrice: Number(foodPrice),
       discountPercent: Number(sale),
     });

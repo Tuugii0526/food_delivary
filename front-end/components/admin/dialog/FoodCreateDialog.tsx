@@ -107,7 +107,10 @@ export function FoodCreateDialog({
                   >
                     {cts.length ? (
                       cts.map((category) => (
-                        <option key={category._id} value={category._id}>
+                        <option
+                          key={category._id}
+                          value={`${category._id};${category.categoryName}`}
+                        >
                           {category.categoryName}
                         </option>
                       ))
